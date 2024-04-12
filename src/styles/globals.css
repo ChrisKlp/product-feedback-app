@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply subpixel-antialiased;
+}
+
+body {
+  @apply scroll-smooth text-darkBlue80
+}
+
+
 @layer components {
   .c-container {
     padding: 0 24px;
@@ -22,5 +31,37 @@
       padding: 0;
       width: 92.7%;
     }
+  }
+
+  .h1 {
+    @apply text-[24px] font-bold
+  }
+
+  .h2 {
+    @apply text-[20px] font-bold
+  }
+
+  .h3 {
+    @apply text-[18px] font-bold
+  }
+
+  .h4 {
+    @apply text-[14px] font-bold
+  }
+
+  .btn {
+    @apply text-gray20 bg-purple hover:bg-purpleHighlighted h-[44px] rounded-[10px] px-4 text-[14px] font-bold
+  }
+
+  .btn-blue {
+    @apply btn bg-blue hover:bg-blueHighlighted
+  }
+
+  .btn-darkBlue {
+    @apply btn bg-darkBlue hover:bg-darkBlueHighlighted
+  }
+
+  .btn-red {
+    @apply btn bg-red hover:bg-redHighlighted
   }
 }
