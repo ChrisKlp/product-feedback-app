@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .c-container {
+    padding: 0 24px;
+    margin: 0 auto;
+    min-width: 280px;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  @screen md {
+    .c-container {
+      padding: 0 40px;
+    }
+  }
+
+  @screen lg {
+    .c-container {
+      padding: 0;
+      width: 92.7%;
+    }
+  }
+}
