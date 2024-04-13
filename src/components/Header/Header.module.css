@@ -1,0 +1,15 @@
+.logoContainer {
+  @apply relative h-[72px];
+}
+
+.logoWrapper {
+  @apply relative flex h-full w-full items-center justify-between px-[24px] text-white;
+}
+
+.logoTitle {
+  @apply text-[15px] font-bold;
+}
+
+.logoSubtitle {
+  @apply text-[13px] font-medium opacity-75;
+}

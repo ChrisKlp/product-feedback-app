@@ -7,61 +7,50 @@
 }
 
 body {
-  @apply scroll-smooth text-darkBlue80
+  @apply text-darkBlue700 bg-blue100 scroll-smooth;
 }
 
-
 @layer components {
-  .c-container {
-    padding: 0 24px;
-    margin: 0 auto;
-    min-width: 280px;
-    max-width: 1100px;
-    width: 100%;
-  }
-
-  @screen md {
-    .c-container {
-      padding: 0 40px;
-    }
-  }
-
-  @screen lg {
-    .c-container {
-      padding: 0;
-      width: 92.7%;
-    }
-  }
-
   .h1 {
-    @apply text-[24px] font-bold
+    @apply text-[24px];
   }
 
   .h2 {
-    @apply text-[20px] font-bold
+    @apply text-[20px];
   }
 
   .h3 {
-    @apply text-[18px] font-bold
+    @apply text-[13px] md:text-[18px];
   }
 
   .h4 {
-    @apply text-[14px] font-bold
+    @apply text-[14px];
+  }
+
+  .h1,
+  .h2,
+  .h3,
+  .h4 {
+    @apply text-darkBlue800 font-bold;
+  }
+
+  p {
+    @apply text-[13px];
   }
 
   .btn {
-    @apply text-gray20 bg-purple hover:bg-purpleHighlighted h-[44px] rounded-[10px] px-4 text-[14px] font-bold
-  }
+    @apply text-blue200 bg-purple hover:bg-purpleHighlighted h-[44px] rounded-[10px] px-4 text-[14px] font-bold transition-colors;
 
-  .btn-blue {
-    @apply btn bg-blue hover:bg-blueHighlighted
-  }
+    &.btn-blue {
+      @apply bg-blue500 hover:bg-blueHighlighted;
+    }
 
-  .btn-darkBlue {
-    @apply btn bg-darkBlue hover:bg-darkBlueHighlighted
-  }
+    &.btn-darkBlue {
+      @apply bg-darkBlue hover:bg-darkBlueHighlighted;
+    }
 
-  .btn-red {
-    @apply btn bg-red hover:bg-redHighlighted
+    &.btn-red {
+      @apply bg-red hover:bg-redHighlighted;
+    }
   }
 }
