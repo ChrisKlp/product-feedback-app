@@ -1,0 +1,48 @@
+.container {
+  @apply relative rounded-[10px] bg-white p-6;
+}
+
+.statusBar {
+  @apply bg-purple absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px];
+}
+
+.statusWrapper {
+  @apply mb-4 flex items-center gap-2;
+}
+
+.statusDot {
+  @apply bg-purple h-2 w-2 rounded-full;
+}
+
+.content {
+  @apply grid
+  grid-cols-2
+  grid-rows-[auto_auto]
+  gap-4
+  [grid-template-areas:'content_content''upvote_comments']
+  md:grid-cols-[auto_1fr_auto]
+  md:grid-rows-1
+  md:items-start
+  md:gap-10
+  md:[grid-template-areas:'upvote_content_comments'];
+}
+
+.contentWrapper {
+  @apply [grid-area:_content];
+}
+
+.upvoteWrapper {
+  @apply justify-self-start [grid-area:_upvote];
+}
+
+.commentsWrapper {
+  @apply flex items-center gap-2 justify-self-end [grid-area:_comments] md:self-center;
+}
+
+.title {
+  @apply mb-2 font-bold;
+}
+
+.commentsCount {
+  @apply text-darkBlue800 text-[13px] font-bold;
+}

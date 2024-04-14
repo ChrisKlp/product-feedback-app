@@ -5,11 +5,19 @@ type Props = {
   value: number
   isActive?: boolean
   onClick?: () => void
+  className?: string
 }
 
-export default function UpvoteButton({ value, isActive, onClick }: Props) {
+export default function UpvoteButton({
+  value,
+  isActive,
+  onClick,
+  className,
+}: Props) {
   return (
-    <button className={cn('group', isActive && 'pointer-events-none')}>
+    <button
+      className={cn('group', isActive && 'pointer-events-none', className)}
+    >
       <span
         className={cn(
           'bg-blue200 group-hover:bg-blue300 inline-flex h-[32px] items-center rounded-[10px] pl-4 pr-3 transition-colors',
