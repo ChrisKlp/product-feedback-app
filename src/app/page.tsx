@@ -1,4 +1,4 @@
-import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
+import NoFeedback from '@/components/NoFeedback/NoFeedback'
 import SortingBar from '@/components/SortingBar/SortingBar'
 import mockedData from '@/mockedData.json'
 
@@ -9,7 +9,7 @@ export default function Home() {
     <main className="">
       <SortingBar />
       <div className="px-6 pt-8">
-        <FeedbackCard data={data!} />
+        <NoFeedback />
       </div>
     </main>
   )
