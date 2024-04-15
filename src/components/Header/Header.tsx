@@ -12,10 +12,13 @@ import styles from './Header.module.css'
 import HeaderBackground from './HeaderBackground'
 import Status from './Status'
 import { categories } from '@/utils/categories'
+import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const isTablet = useMediaQuery('(min-width: 768px)')
+  const activeCategory = useActiveCategoryStore((state) => state.activeCategory)
+  const setCategory = useActiveCategoryStore((state) => state.setCategory)
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
@@ -61,8 +64,9 @@ export default function Header() {
             <CategoryButtonTag
               key={category}
               name={category}
-              isSelected={i === 0}
+              isSelected={category === activeCategory}
               className="mb-[6px]"
+              onSelected={() => setCategory(category)}
             />
           ))}
         </div>

@@ -4,7 +4,7 @@ type Props = {
   name: string
   isSelected?: boolean
   className?: string
-  onSelected?: (name: string) => void
+  onSelected?: () => void
 }
 
 export function CategoryTag({
@@ -42,6 +42,7 @@ export function CategoryButtonTag({
   return (
     <button
       className={cn('group', isSelected && 'pointer-events-none', className)}
+      onClick={onSelected}
     >
       <CategoryTag name={name} isSelected={isSelected} />
     </button>

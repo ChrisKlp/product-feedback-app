@@ -1,13 +1,14 @@
 import SuggestionsIcon from '@/assets/suggestions/icon-suggestions.svg'
 import ArrowDown from '@/assets/shared/icon-arrow-down.svg'
 import { cn } from '@/utils/utils'
+import { Feedback } from '@/types'
 
 type Props = {
   className?: string
+  counter: number
 }
 
-export default function SortingBar({ className }: Props) {
-  const counter = 6
+export default function SortingBar({ className, counter }: Props) {
   return (
     <div
       className={cn(
