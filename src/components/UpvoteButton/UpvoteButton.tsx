@@ -4,7 +4,7 @@ import ArrowUpIcon from '@/assets/shared/icon-arrow-up.svg'
 type Props = {
   value: number
   isActive?: boolean
-  onClick?: () => void
+  onClick: () => void
   className?: string
 }
 
@@ -18,6 +18,10 @@ export default function UpvoteButton({
     <button
       type="button"
       className={cn('group', isActive && 'pointer-events-none', className)}
+      onClick={(e) => {
+        e.stopPropagation()
+        onClick()
+      }}
     >
       <span
         className={cn(

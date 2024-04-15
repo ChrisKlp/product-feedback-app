@@ -17,7 +17,7 @@ export function CategoryTag({
     <span
       className={cn(
         'bg-blue200 group-hover:bg-blue300 rounded-dlg inline-flex h-[30px] items-center px-4 transition-colors',
-        isSelected && 'bg-blue500',
+        isSelected && 'bg-blue500 group-hover:bg-blue500',
         className,
       )}
     >

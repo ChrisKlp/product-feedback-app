@@ -13,7 +13,13 @@ type Props = {
 export default function FeedbackCard({ data, showStatus = false }: Props) {
   const commentsCount = data.comments?.length || 0
   return (
-    <article className={styles.wrapper}>
+    <article
+      role="button"
+      className={cn(styles.wrapper, 'group/title')}
+      onClick={() => {
+        console.log('click')
+      }}
+    >
       {showStatus && (
         <>
           <div className={styles.statusBar} />
@@ -25,13 +31,18 @@ export default function FeedbackCard({ data, showStatus = false }: Props) {
       )}
       <div className={styles.content}>
         <div className={styles.contentWrapper}>
-          <h3 className={cn(styles.title, 'h3')}>{data.title}</h3>
+          <h3 className={cn(styles.title, 'h3 group-hover/title:text-blue500')}>
+            {data.title}
+          </h3>
           <p className="mb-2 md:mb-3">{data.description}</p>
           <CategoryTag name={data.category} />
         </div>
         <UpvoteButton
           value={data.upvotes || 0}
           className={styles.upvoteWrapper}
+          onClick={() => {
+            console.log(data.upvotes)
+          }}
         />
         <div className={styles.commentsWrapper}>
           <CommentsIcon className="text-blue300" />

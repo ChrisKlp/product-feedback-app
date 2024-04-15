@@ -8,6 +8,7 @@ import SortingBar from '../SortingBar/SortingBar'
 import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
 import { useShallow } from 'zustand/react/shallow'
 import { Filter } from '@/types/index'
+import NoFeedback from '../NoFeedback/NoFeedback'
 
 type Props = {
   data: Feedback[]
@@ -72,13 +73,21 @@ export default function FeedbackList({ data }: Props) {
     }
   }, [])
 
+  const updatedData = getSortedData(getFilteredData())
+
   return (
     <>
       <SortingBar counter={getFilteredData().length || 0} />
       <div className="grid gap-4 px-6 pb-[55px] pt-8 md:px-0 md:pb-[120px] md:pt-6">
-        {getSortedData(getFilteredData()).map((el) => (
-          <FeedbackCard key={el.id} data={el} />
-        ))}
+        {updatedData.length ? (
+          <>
+            {updatedData.map((feedback) => (
+              <FeedbackCard key={feedback.id} data={feedback} />
+            ))}
+          </>
+        ) : (
+          <NoFeedback />
+        )}
       </div>
     </>
   )
