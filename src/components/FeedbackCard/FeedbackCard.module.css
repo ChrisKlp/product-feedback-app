@@ -1,5 +1,5 @@
 .wrapper {
-  @apply rounded-dlg relative bg-white p-6;
+  @apply rounded-dlg relative bg-white p-6 md:px-8 md:py-7;
 }
 
 .statusBar {

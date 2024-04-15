@@ -26,7 +26,7 @@ export default function FeedbackCard({ data, showStatus = false }: Props) {
       <div className={styles.content}>
         <div className={styles.contentWrapper}>
           <h3 className={cn(styles.title, 'h3')}>{data.title}</h3>
-          <p className="mb-2">{data.description}</p>
+          <p className="mb-2 md:mb-3">{data.description}</p>
           <CategoryTag name={data.category} />
         </div>
         <UpvoteButton value={112} className={styles.upvoteWrapper} />

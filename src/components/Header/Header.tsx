@@ -35,7 +35,7 @@ export default function Header() {
   }, [isTablet])
 
   return (
-    <header className={cn(styles.wrapper)} style={{ overflow: 'hidden' }}>
+    <header className={cn(styles.wrapper)}>
       <section className={styles.logoWrapper}>
         <HeaderBackground />
         <div className={styles.logoGroup}>

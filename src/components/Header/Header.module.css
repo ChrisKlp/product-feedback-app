@@ -1,5 +1,5 @@
 .wrapper {
-  @apply w-full md:grid md:grid-cols-3 md:gap-[10px] md:pb-10 lg:grid-cols-1 lg:gap-6;
+  @apply w-full md:grid md:grid-cols-3 md:gap-[10px] md:pb-10 lg:grid-cols-1 lg:content-start lg:gap-6;
 }
 
 .logoWrapper {
