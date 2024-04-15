@@ -2,6 +2,7 @@
 
 import IconClose from '@/assets/shared/mobile/icon-close.svg'
 import HamburgerMenu from '@/assets/shared/mobile/icon-hamburger.svg'
+import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { statuses } from '@/utils/statuses'
 import { cn } from '@/utils/utils'
@@ -11,13 +12,12 @@ import { CategoryButtonTag } from '../CategoryTag/CategoryTag'
 import styles from './Header.module.css'
 import HeaderBackground from './HeaderBackground'
 import Status from './Status'
-import { categories } from '@/utils/categories'
-import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const isTablet = useMediaQuery('(min-width: 768px)')
   const activeCategory = useActiveCategoryStore((state) => state.activeCategory)
+  const categories = useActiveCategoryStore((state) => state.categories)
   const setCategory = useActiveCategoryStore((state) => state.setCategory)
 
   const toggleMenu = () => {
@@ -45,7 +45,11 @@ export default function Header() {
             <h1 className={cn(styles.logoTitle)}>Frontend Mentor</h1>
             <p className={styles.logoSubtitle}>Feedback Board</p>
           </div>
-          <button className={styles.navButton} onClick={toggleMenu}>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={toggleMenu}
+          >
             {isOpen ? <IconClose /> : <HamburgerMenu />}
           </button>
         </div>

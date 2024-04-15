@@ -16,6 +16,7 @@ export default function UpvoteButton({
 }: Props) {
   return (
     <button
+      type="button"
       className={cn('group', isActive && 'pointer-events-none', className)}
     >
       <span

@@ -26,3 +26,10 @@ export type Replay = {
   replyingTo: string
   user: User
 }
+
+export enum Filter {
+  'Most Upvotes' = 'Most Upvotes',
+  'Least Upvotes' = 'Least Upvotes',
+  'Most Comments' = 'Most Comments',
+  'Least Comments' = 'Least Comments',
+}

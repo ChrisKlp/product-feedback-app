@@ -41,6 +41,7 @@ export function CategoryButtonTag({
 }: Props) {
   return (
     <button
+      type="button"
       className={cn('group', isSelected && 'pointer-events-none', className)}
       onClick={onSelected}
     >

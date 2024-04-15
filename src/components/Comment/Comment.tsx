@@ -17,7 +17,10 @@ export default function Comment({ data }: Props) {
           <p className="text-darkBlue800 font-bold">{data.user.name}</p>
           <p>@{data.user.username}</p>
         </div>
-        <button className="text-blue500 text-[13px] font-semibold">
+        <button
+          type="button"
+          className="text-blue500 text-[13px] font-semibold"
+        >
           Reply
         </button>
       </header>

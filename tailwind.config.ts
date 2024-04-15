@@ -32,6 +32,9 @@ const config: Config = {
       borderRadius: {
         dlg: '10px',
       },
+      boxShadow: {
+        blue: '0 10px 40px -7px rgba(55, 63, 104, 0.35)',
+      },
     },
   },
   plugins: [],

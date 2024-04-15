@@ -1,7 +1,12 @@
-import SuggestionsIcon from '@/assets/suggestions/icon-suggestions.svg'
+'use client'
+
 import ArrowDown from '@/assets/shared/icon-arrow-down.svg'
+import SuggestionsIcon from '@/assets/suggestions/icon-suggestions.svg'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 import { cn } from '@/utils/utils'
-import { Feedback } from '@/types'
+import { useRef, useState } from 'react'
+import SortingMenu from '@/components/SortingMenu/SortingMenu'
+import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
 
 type Props = {
   className?: string
@@ -9,6 +14,13 @@ type Props = {
 }
 
 export default function SortingBar({ className, counter }: Props) {
+  const activeFilter = useActiveFilterStore((state) => state.activeFilter)
+  const [isOpen, setIsOpen] = useState(false)
+  const filterButtonRef = useRef(null)
+  const filterMenuRef = useRef(null)
+
+  useOnClickOutside([filterButtonRef, filterMenuRef], () => setIsOpen(false))
+
   return (
     <div
       className={cn(
@@ -22,12 +34,28 @@ export default function SortingBar({ className, counter }: Props) {
       </div>
       <div className="flex flex-1 items-center gap-1 text-[13px]">
         <span>Sort by : </span>
-        <button className="flex items-center gap-2 font-bold">
-          <span>Most Upvotes</span>
-          <ArrowDown />
-        </button>
+        <div className="relative">
+          <button
+            ref={filterButtonRef}
+            type="button"
+            className="flex items-center gap-2 font-bold"
+            onClick={() => setIsOpen(true)}
+          >
+            <span>{activeFilter}</span>
+            <ArrowDown />
+          </button>
+          {isOpen && (
+            <SortingMenu
+              activeFilter={activeFilter}
+              ref={filterMenuRef}
+              onSelect={() => setIsOpen(false)}
+            />
+          )}
+        </div>
       </div>
-      <button className="btn h-[40px] px-[16px]">+ Add Feedback</button>
+      <button type="button" className="btn h-[40px] px-[16px]">
+        + Add Feedback
+      </button>
     </div>
   )
 }
