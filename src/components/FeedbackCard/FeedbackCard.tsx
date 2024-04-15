@@ -13,7 +13,7 @@ type Props = {
 export default function FeedbackCard({ data, showStatus = false }: Props) {
   const commentsCount = 2
   return (
-    <article className={styles.container}>
+    <article className={styles.wrapper}>
       {showStatus && (
         <>
           <div className={styles.statusBar} />

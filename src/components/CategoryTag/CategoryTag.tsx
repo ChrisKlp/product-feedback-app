@@ -23,7 +23,7 @@ export function CategoryTag({
     >
       <span
         className={cn(
-          'text-blue500 text-small font-semibold capitalize transition-colors',
+          'text-blue500 text-[13px] font-semibold capitalize transition-colors',
           isSelected && 'text-white',
         )}
       >

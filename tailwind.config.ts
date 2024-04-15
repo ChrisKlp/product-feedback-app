@@ -12,9 +12,6 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
-      fontSize: {
-        small: '13px',
-      },
       colors: {
         purple: '#AD1FEA',
         purpleHighlighted: '#C75AF6',

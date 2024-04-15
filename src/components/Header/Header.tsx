@@ -1,29 +1,41 @@
 'use client'
 
-import Image from 'next/image'
-import backgroundHeader from '@/assets/suggestions/mobile/background-header.png'
-import HamburgerMenu from '@/assets/shared/mobile/icon-hamburger.svg'
 import IconClose from '@/assets/shared/mobile/icon-close.svg'
-import styles from './Header.module.css'
-import Link from 'next/link'
-import { CategoryButtonTag } from '../CategoryTag/CategoryTag'
-import Status from './Status'
+import HamburgerMenu from '@/assets/shared/mobile/icon-hamburger.svg'
+import useMediaQuery from '@/hooks/useMediaQuery'
 import { statuses } from '@/utils/statuses'
-import { useState } from 'react'
 import { cn } from '@/utils/utils'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { CategoryButtonTag } from '../CategoryTag/CategoryTag'
+import styles from './Header.module.css'
 import HeaderBackground from './HeaderBackground'
+import Status from './Status'
 
 const categories = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const isTablet = useMediaQuery('(min-width: 768px)')
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
 
+  useEffect(() => {
+    if (typeof window != 'undefined' && window.document) {
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (isTablet && isOpen) {
+      setIsOpen(false)
+    }
+  }, [isTablet])
+
   return (
-    <header className={styles.wrapper}>
+    <header className={cn(styles.wrapper)} style={{ overflow: 'hidden' }}>
       <section className={styles.logoWrapper}>
         <HeaderBackground />
         <div className={styles.logoGroup}>

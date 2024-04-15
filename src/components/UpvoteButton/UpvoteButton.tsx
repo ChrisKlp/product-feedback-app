@@ -33,7 +33,7 @@ export default function UpvoteButton({
           />
           <span
             className={cn(
-              'text-darkBlue800 text-small font-semibold capitalize transition-colors',
+              'text-darkBlue800 text-[13px] font-semibold capitalize transition-colors',
               isActive && 'text-white',
             )}
           >

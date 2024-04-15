@@ -1,4 +1,4 @@
-.container {
+.wrapper {
   @apply rounded-dlg relative bg-white p-6;
 }
 
@@ -44,5 +44,5 @@
 }
 
 .commentsCount {
-  @apply text-darkBlue800 text-small font-bold;
+  @apply text-darkBlue800 text-[13px] font-bold;
 }
