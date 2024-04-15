@@ -17,9 +17,7 @@ export default function Comment({ data }: Props) {
           <p className="text-darkBlue800 font-bold">{data.user.name}</p>
           <p>@{data.user.username}</p>
         </div>
-        <button className="text-blue500 text-[13px] font-semibold">
-          Reply
-        </button>
+        <button className="text-blue500 text-small font-semibold">Reply</button>
       </header>
       <p>{data.content}</p>
     </article>

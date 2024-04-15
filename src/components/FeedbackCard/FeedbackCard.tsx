@@ -1,5 +1,5 @@
 import { Feedback } from '@/types'
-import CategoryTag from '@/components/CategoryTag/CategoryTag'
+import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
 import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import styles from './FeedbackCard.module.css'

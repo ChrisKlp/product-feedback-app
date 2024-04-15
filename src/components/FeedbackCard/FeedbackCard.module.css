@@ -1,5 +1,5 @@
 .container {
-  @apply relative rounded-[10px] bg-white p-6;
+  @apply rounded-dlg relative bg-white p-6;
 }
 
 .statusBar {
@@ -44,5 +44,5 @@
 }
 
 .commentsCount {
-  @apply text-darkBlue800 text-[13px] font-bold;
+  @apply text-darkBlue800 text-small font-bold;
 }

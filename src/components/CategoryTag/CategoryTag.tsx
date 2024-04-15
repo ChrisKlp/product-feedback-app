@@ -7,7 +7,7 @@ type Props = {
   onSelected?: (name: string) => void
 }
 
-export default function CategoryTag({
+export function CategoryTag({
   name,
   className,
   isSelected = false,
@@ -16,13 +16,14 @@ export default function CategoryTag({
   return (
     <span
       className={cn(
-        'bg-blue200 group-hover:bg-blue300 inline-flex h-[30px] items-center rounded-[10px] px-4 transition-colors',
+        'bg-blue200 group-hover:bg-blue300 rounded-dlg inline-flex h-[30px] items-center px-4 transition-colors',
         isSelected && 'bg-blue500',
+        className,
       )}
     >
       <span
         className={cn(
-          'text-blue500 text-[13px] font-semibold capitalize transition-colors',
+          'text-blue500 text-small font-semibold capitalize transition-colors',
           isSelected && 'text-white',
         )}
       >
@@ -39,7 +40,9 @@ export function CategoryButtonTag({
   onSelected,
 }: Props) {
   return (
-    <button className={cn('group', isSelected && 'pointer-events-none')}>
+    <button
+      className={cn('group', isSelected && 'pointer-events-none', className)}
+    >
       <CategoryTag name={name} isSelected={isSelected} />
     </button>
   )

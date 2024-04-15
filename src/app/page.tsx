@@ -1,7 +1,5 @@
-import NoFeedback from '@/components/NoFeedback/NoFeedback'
 import SortingBar from '@/components/SortingBar/SortingBar'
 import mockedData from '@/mockedData.json'
-import Image from 'next/image'
 
 let data = mockedData.productRequests[0]
 

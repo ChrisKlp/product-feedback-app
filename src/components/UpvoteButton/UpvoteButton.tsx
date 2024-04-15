@@ -20,7 +20,7 @@ export default function UpvoteButton({
     >
       <span
         className={cn(
-          'bg-blue200 group-hover:bg-blue300 inline-flex h-[32px] items-center rounded-[10px] pl-4 pr-3 transition-colors',
+          'bg-blue200 group-hover:bg-blue300 rounded-dlg inline-flex h-8 items-center pl-4 pr-3 transition-colors',
           isActive && 'bg-blue500',
         )}
       >
@@ -33,7 +33,7 @@ export default function UpvoteButton({
           />
           <span
             className={cn(
-              'text-darkBlue800 text-[13px] font-semibold capitalize transition-colors',
+              'text-darkBlue800 text-small font-semibold capitalize transition-colors',
               isActive && 'text-white',
             )}
           >

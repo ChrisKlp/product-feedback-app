@@ -12,6 +12,9 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
+      fontSize: {
+        small: '13px',
+      },
       colors: {
         purple: '#AD1FEA',
         purpleHighlighted: '#C75AF6',
@@ -28,6 +31,9 @@ const config: Config = {
         lightBlue: '#62BCFA',
         darkBlue700: '#647196',
         darkBlue800: '#3A4374',
+      },
+      borderRadius: {
+        dlg: '10px',
       },
     },
   },
