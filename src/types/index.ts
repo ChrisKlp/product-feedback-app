@@ -5,6 +5,7 @@ export type Feedback = {
   upvotes: number
   status: string
   description: string
+  comments?: TComment[]
 }
 
 export type User = {
@@ -16,5 +17,12 @@ export type User = {
 export type TComment = {
   id: number
   content: string
+  user: User
+  replies?: Replay[]
+}
+
+export type Replay = {
+  content: string
+  replyingTo: string
   user: User
 }

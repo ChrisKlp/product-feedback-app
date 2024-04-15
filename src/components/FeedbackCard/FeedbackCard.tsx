@@ -11,7 +11,7 @@ type Props = {
 }
 
 export default function FeedbackCard({ data, showStatus = false }: Props) {
-  const commentsCount = 2
+  const commentsCount = data.comments?.length || 0
   return (
     <article className={styles.wrapper}>
       {showStatus && (
@@ -29,7 +29,10 @@ export default function FeedbackCard({ data, showStatus = false }: Props) {
           <p className="mb-2 md:mb-3">{data.description}</p>
           <CategoryTag name={data.category} />
         </div>
-        <UpvoteButton value={112} className={styles.upvoteWrapper} />
+        <UpvoteButton
+          value={data.upvotes || 0}
+          className={styles.upvoteWrapper}
+        />
         <div className={styles.commentsWrapper}>
           <CommentsIcon className="text-blue300" />
           <span className={styles.commentsCount}>{commentsCount}</span>

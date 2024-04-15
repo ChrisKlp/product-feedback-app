@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       <SortingBar />
-      <div className="grid gap-4 px-6 pt-8 md:px-0 md:pt-6">
+      <div className="grid gap-4 px-6 pb-[55px] pt-8 md:px-0 md:pb-[120px] md:pt-6">
         {data.map((el) => (
           <FeedbackCard data={el} />
         ))}

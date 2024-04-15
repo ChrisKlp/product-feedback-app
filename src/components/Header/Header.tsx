@@ -11,8 +11,7 @@ import { CategoryButtonTag } from '../CategoryTag/CategoryTag'
 import styles from './Header.module.css'
 import HeaderBackground from './HeaderBackground'
 import Status from './Status'
-
-const categories = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
+import { categories } from '@/utils/categories'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
