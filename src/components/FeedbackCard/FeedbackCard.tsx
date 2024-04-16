@@ -20,44 +20,48 @@ export default function FeedbackCard({
   return (
     <article
       role="button"
-      className={cn(styles.wrapper, 'group/title')}
+      className="@container/card group/title"
       onClick={() => {
         console.log('click')
       }}
     >
-      {showStatus && (
-        <>
-          <div
-            className={styles.statusBar}
-            style={{ backgroundColor: color }}
-          />
-          <div className={styles.statusWrapper}>
-            <span
-              className={styles.statusDot}
+      <div className={styles.wrapper}>
+        {showStatus && (
+          <>
+            <div
+              className={styles.statusBar}
               style={{ backgroundColor: color }}
             />
-            <p className="capitalize">{data.status}</p>
+            <div className={styles.statusWrapper}>
+              <span
+                className={styles.statusDot}
+                style={{ backgroundColor: color }}
+              />
+              <p className="capitalize">{data.status}</p>
+            </div>
+          </>
+        )}
+        <div className={styles.content}>
+          <div className={styles.contentWrapper}>
+            <h3
+              className={cn(styles.title, 'h3 group-hover/title:text-blue500')}
+            >
+              {data.title}
+            </h3>
+            <p className={styles.description}>{data.description}</p>
+            <CategoryTag name={data.category} />
           </div>
-        </>
-      )}
-      <div className={styles.content}>
-        <div className={styles.contentWrapper}>
-          <h3 className={cn(styles.title, 'h3 group-hover/title:text-blue500')}>
-            {data.title}
-          </h3>
-          <p className="mb-2 md:mb-3">{data.description}</p>
-          <CategoryTag name={data.category} />
-        </div>
-        <UpvoteButton
-          value={data.upvotes || 0}
-          className={styles.upvoteWrapper}
-          onClick={() => {
-            console.log(data.upvotes)
-          }}
-        />
-        <div className={styles.commentsWrapper}>
-          <CommentsIcon className="text-blue300" />
-          <span className={styles.commentsCount}>{commentsCount}</span>
+          <UpvoteButton
+            value={data.upvotes || 0}
+            className={styles.upvoteWrapper}
+            onClick={() => {
+              console.log(data.upvotes)
+            }}
+          />
+          <div className={styles.commentsWrapper}>
+            <CommentsIcon className="text-blue300" />
+            <span className={styles.commentsCount}>{commentsCount}</span>
+          </div>
         </div>
       </div>
     </article>

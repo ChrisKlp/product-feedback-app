@@ -25,11 +25,11 @@ export default function UpvoteButton({
     >
       <span
         className={cn(
-          'bg-blue200 group-hover:bg-blue300 rounded-dlg flex h-8 items-center pl-4 pr-3 transition-colors md:h-[53px] md:w-10 md:items-start md:justify-center md:p-0 md:pt-[14px]',
+          'bg-blue200 group-hover:bg-blue300 rounded-dlg @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px] flex h-8 items-center pl-4 pr-3 transition-colors',
           isActive && 'bg-blue500',
         )}
       >
-        <span className="flex items-center gap-[10px] md:flex-col md:gap-[6px]">
+        <span className="@xl/card:flex-col @xl/card:gap-[6px] flex items-center gap-[10px]">
           <ArrowUpIcon
             className={cn(
               'text-blue500 transition-colors',

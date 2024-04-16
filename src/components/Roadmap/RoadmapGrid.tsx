@@ -17,7 +17,11 @@ export default function RoadmapGrid({ data, className }: Props) {
       className={cn('hidden md:grid md:grid-cols-3 md:gap-[10px]', className)}
     >
       {currentStatusData.map((status) => (
-        <RoadmapColumn key={status} data={getCurrentStatusData(data, status)} />
+        <RoadmapColumn
+          key={status}
+          data={getCurrentStatusData(data, status)}
+          activeStatus={status}
+        />
       ))}
     </section>
   )

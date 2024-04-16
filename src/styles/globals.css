@@ -27,7 +27,7 @@ p {
   }
 
   .h3 {
-    @apply text-[13px] md:text-[18px];
+    @apply text-[13px];
   }
 
   .h4 {
