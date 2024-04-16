@@ -17,7 +17,11 @@ export default function UpvoteButton({
   return (
     <button
       type="button"
-      className={cn('group', isActive && 'pointer-events-none', className)}
+      className={cn(
+        'group/upvote',
+        className,
+        isActive && 'pointer-events-none',
+      )}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
@@ -25,7 +29,7 @@ export default function UpvoteButton({
     >
       <span
         className={cn(
-          'bg-blue200 group-hover:bg-blue300 rounded-dlg @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px] flex h-8 items-center pl-4 pr-3 transition-colors',
+          'bg-blue200 group-hover/upvote:bg-blue300 rounded-dlg @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px] flex h-8 items-center pl-4 pr-3 transition-colors',
           isActive && 'bg-blue500',
         )}
       >

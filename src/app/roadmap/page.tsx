@@ -1,9 +1,14 @@
-import RoadmapContent from '@/components/Roadmap/RoadmapContent'
 import RoadmapGrid from '@/components/Roadmap/RoadmapGrid'
+import RoadmapTabs from '@/components/Roadmap/RoadmapTabs/RoadmapTabs'
 import mockedData from '@/mockedData.json'
 
 let data = mockedData.productRequests
 
 export default function RoadmapPage() {
-  return <RoadmapContent data={data} />
+  return (
+    <>
+      <RoadmapTabs data={data} className="md:hidden" />
+      <RoadmapGrid data={data} />
+    </>
+  )
 }

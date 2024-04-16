@@ -1,28 +1,35 @@
+'use client'
+
 import { Feedback } from '@/types'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
 import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import styles from './FeedbackCard.module.css'
 import { cn } from '@/utils/utils'
+import { useRouter } from 'next/navigation'
+import routes from '@/utils/routes'
 
 type Props = {
   data: Feedback
   color?: string
   showStatus?: boolean
+  className?: string
 }
 
 export default function FeedbackCard({
   data,
   color = '#AD1FEA',
   showStatus = false,
+  className,
 }: Props) {
+  const router = useRouter()
   const commentsCount = data.comments?.length || 0
   return (
     <article
       role="button"
-      className="@container/card group/title"
+      className={cn('@container/card group/title', className)}
       onClick={() => {
-        console.log('click')
+        router.push(`${routes.feedback}/${data.id}`)
       }}
     >
       <div
@@ -58,7 +65,7 @@ export default function FeedbackCard({
           </div>
           <UpvoteButton
             value={data.upvotes || 0}
-            className={styles.upvoteWrapper}
+            className={cn(styles.upvoteWrapper, 'pointer-events-auto')}
             onClick={() => {
               console.log(data.upvotes)
             }}

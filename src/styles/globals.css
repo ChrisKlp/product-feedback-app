@@ -18,6 +18,11 @@ p {
   .c-container {
     @apply mx-auto max-w-[1100px] md:px-10 md:pt-14 lg:pt-[94px];
   }
+
+  .c-container-2 {
+    @apply mx-auto max-w-[1100px] p-6 pb-20 md:px-10 md:pb-24 md:pt-14 lg:pb-[120px] lg:pt-20;
+  }
+
   .h1 {
     @apply text-[24px];
   }
