@@ -4,16 +4,10 @@ import { notFound } from 'next/navigation'
 
 type Props = { params: { id: string } }
 
-export default function SingleFeedbackPage({ params: { id } }: Props) {
-  const data = getFeedbackData(+id)
-
-  if (!data) {
-    notFound()
-  }
-
+export default function NewFeedbackPage({ params: { id } }: Props) {
   return (
     <section>
-      <FeedbackCard data={data} className="pointer-events-none" />
+      <p>new</p>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import EmptyImage from '@/assets/suggestions/illustration-empty.svg'
+import AddFeedbackButton from '@/components/buttons/AddFeedbackButton'
 
 export default function NoFeedback() {
   return (
@@ -9,9 +10,7 @@ export default function NoFeedback() {
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
         about new ideas to improve our app.
       </p>
-      <button type="button" className="btn">
-        + Add Feedback
-      </button>
+      <AddFeedbackButton />
     </section>
   )
 }

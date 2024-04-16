@@ -7,6 +7,7 @@ import { cn } from '@/utils/utils'
 import { useRef, useState } from 'react'
 import SortingMenu from '@/components/SortingMenu/SortingMenu'
 import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
+import AddFeedbackButton from '@/components/buttons/AddFeedbackButton'
 
 type Props = {
   className?: string
@@ -53,9 +54,7 @@ export default function SortingBar({ className, counter }: Props) {
           )}
         </div>
       </div>
-      <button type="button" className="btn h-[40px] px-[16px]">
-        + Add Feedback
-      </button>
+      <AddFeedbackButton className="h-[40px] px-[16px]" />
     </div>
   )
 }
