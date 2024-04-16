@@ -33,3 +33,9 @@ export enum Filter {
   'Most Comments' = 'Most Comments',
   'Least Comments' = 'Least Comments',
 }
+
+export enum Status {
+  'Planned' = 'Planned',
+  'In-Progress' = 'In-Progress',
+  'Live' = 'Live',
+}

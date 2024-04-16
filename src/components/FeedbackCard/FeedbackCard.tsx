@@ -7,10 +7,15 @@ import { cn } from '@/utils/utils'
 
 type Props = {
   data: Feedback
+  color?: string
   showStatus?: boolean
 }
 
-export default function FeedbackCard({ data, showStatus = false }: Props) {
+export default function FeedbackCard({
+  data,
+  color = '#AD1FEA',
+  showStatus = false,
+}: Props) {
   const commentsCount = data.comments?.length || 0
   return (
     <article
@@ -22,9 +27,15 @@ export default function FeedbackCard({ data, showStatus = false }: Props) {
     >
       {showStatus && (
         <>
-          <div className={styles.statusBar} />
+          <div
+            className={styles.statusBar}
+            style={{ backgroundColor: color }}
+          />
           <div className={styles.statusWrapper}>
-            <span className={styles.statusDot} />
+            <span
+              className={styles.statusDot}
+              style={{ backgroundColor: color }}
+            />
             <p className="capitalize">{data.status}</p>
           </div>
         </>

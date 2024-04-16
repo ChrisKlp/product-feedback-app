@@ -5,13 +5,14 @@ import HamburgerMenu from '@/assets/shared/mobile/icon-hamburger.svg'
 import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import { statuses } from '@/utils/statuses'
-import { cn } from '@/utils/utils'
+import { IS_SERVER, cn } from '@/utils/utils'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { CategoryButtonTag } from '../CategoryTag/CategoryTag'
 import styles from './Header.module.css'
 import HeaderBackground from './HeaderBackground'
 import Status from './Status'
+import routes from '@/utils/routes'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,15 +25,17 @@ export default function Header() {
     setIsOpen((prev) => !prev)
   }
 
+  const closeNav = () => setIsOpen(false)
+
   useEffect(() => {
-    if (typeof window != 'undefined' && window.document) {
+    if (!IS_SERVER) {
       document.body.style.overflow = isOpen ? 'hidden' : 'auto'
     }
   }, [isOpen])
 
   useEffect(() => {
     if (isTablet && isOpen) {
-      setIsOpen(false)
+      closeNav()
     }
   }, [isTablet])
 
@@ -77,7 +80,11 @@ export default function Header() {
         <div className={styles.statusWrapper}>
           <div className={styles.statusHeader}>
             <p className={styles.statusTitle}>Roadmap</p>
-            <Link href={''} className={styles.statusLink}>
+            <Link
+              onClick={closeNav}
+              href={routes.roadmap}
+              className={styles.statusLink}
+            >
               View
             </Link>
           </div>

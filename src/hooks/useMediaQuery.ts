@@ -10,11 +10,17 @@ export default function useMediaQuery(query: string, defaultValue = false) {
     return window.matchMedia(query).matches
   }
 
+  function handleChange() {
+    setMatches(getMatches(query))
+  }
+
+  useEffect(() => {
+    handleChange()
+  }, [])
+
   useEffect(() => {
     const matchQueryList = window.matchMedia(query)
-    function handleChange(e: MediaQueryListEvent) {
-      setMatches(getMatches(query))
-    }
+
     matchQueryList.addEventListener('change', handleChange)
     return () => {
       matchQueryList.removeEventListener('change', handleChange)
