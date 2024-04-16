@@ -14,7 +14,10 @@ const currentStatusData = [Status.Planned, Status['In-Progress'], Status.Live]
 export default function RoadmapGrid({ data, className }: Props) {
   return (
     <section
-      className={cn('hidden md:grid md:grid-cols-3 md:gap-[10px]', className)}
+      className={cn(
+        'hidden md:mt-8 md:grid md:grid-cols-3 md:gap-[10px] lg:mt-12 lg:gap-[30px]',
+        className,
+      )}
     >
       {currentStatusData.map((status) => (
         <RoadmapColumn

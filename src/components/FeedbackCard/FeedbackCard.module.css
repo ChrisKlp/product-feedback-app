@@ -1,13 +1,9 @@
-.wrapper {
-  @apply @container/card rounded-dlg @xl/card:px-8 @xl/card:py-7 relative bg-white p-6;
-}
-
 .statusBar {
   @apply bg-purple absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px];
 }
 
 .statusWrapper {
-  @apply mb-4 flex items-center gap-2;
+  @apply mb-4 flex items-center gap-2 md:mb-[14px] lg:mb-2;
 }
 
 .statusDot {
@@ -40,11 +36,11 @@
 }
 
 .title {
-  @apply @xl/card:text-[18px] mb-2 font-bold;
+  @apply @xl/card:text-[18px] mb-2 font-bold lg:text-[18px];
 }
 
 .description {
-  @apply @xl/card:mb-3 mb-2;
+  @apply @xl/card:mb-3 @xl/card:text-base md:@xl/card:mb-3 mb-2 md:mb-[22px];
 }
 
 .commentsCount {

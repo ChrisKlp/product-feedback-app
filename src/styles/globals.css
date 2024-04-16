@@ -11,7 +11,7 @@ body {
 }
 
 p {
-  @apply text-[13px];
+  @apply text-[13px] lg:text-base;
 }
 
 @layer components {

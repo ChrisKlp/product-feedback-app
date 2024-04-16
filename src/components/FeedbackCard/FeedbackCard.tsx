@@ -25,7 +25,12 @@ export default function FeedbackCard({
         console.log('click')
       }}
     >
-      <div className={styles.wrapper}>
+      <div
+        className={cn(
+          'rounded-dlg @xl/card:px-8 @xl/card:py-7 relative bg-white p-6 lg:px-8',
+          showStatus && 'lg:p-8 lg:pt-6',
+        )}
+      >
         {showStatus && (
           <>
             <div
