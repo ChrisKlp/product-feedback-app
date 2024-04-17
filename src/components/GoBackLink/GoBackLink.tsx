@@ -14,7 +14,7 @@ export default function GoBackLink({ theme = 'dark' }: Props) {
   return (
     <button
       className={cn(
-        'text-blue300 flex items-center gap-4',
+        'flex items-center gap-4 text-blue300',
         isLightTheme && 'text-blue500',
       )}
       onClick={() => router.back()}

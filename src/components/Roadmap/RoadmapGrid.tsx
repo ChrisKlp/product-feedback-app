@@ -1,6 +1,6 @@
 'use client'
 
-import { Feedback, Status } from '@/types'
+import { type Feedback, Status } from '@/types'
 import RoadmapColumn from './RoadmapColumn'
 import { cn, getCurrentStatusData } from '@/utils/utils'
 

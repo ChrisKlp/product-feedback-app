@@ -1,5 +1,5 @@
 import avatar from '@/assets/user-images/image-elijah.jpg'
-import { TComment } from '@/types'
+import type { TComment } from '@/types'
 import Image from 'next/image'
 
 type Props = {
@@ -14,12 +14,12 @@ export default function Comment({ data }: Props) {
           <Image alt="avatar" src={avatar} fill />
         </div>
         <div className="flex-1">
-          <p className="text-darkBlue800 font-bold">{data.user.name}</p>
+          <p className="font-bold text-darkBlue800">{data.user.name}</p>
           <p>@{data.user.username}</p>
         </div>
         <button
           type="button"
-          className="text-blue500 text-[13px] font-semibold"
+          className="text-[13px] font-semibold text-blue500"
         >
           Reply
         </button>

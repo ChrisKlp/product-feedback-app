@@ -23,7 +23,7 @@ export default function HeaderBackground() {
       <source media="(min-width: 768px)" srcSet={tablet} />
       <source media="(min-width: 1024px)" srcSet={desktop} />
       <source srcSet={mobile} />
-      <img className="absolute h-full w-full object-cover" />
+      <img className="absolute h-full w-full object-cover" alt="background" />
     </picture>
   )
 }

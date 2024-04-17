@@ -1,6 +1,6 @@
 'use client'
 
-import { Feedback, Status } from '@/types'
+import { type Feedback, Status } from '@/types'
 import { getCurrentStatusData } from '@/utils/utils'
 import { useState } from 'react'
 import RoadmapColumn from '../RoadmapColumn'
@@ -30,7 +30,7 @@ export default function RoadmapTabs({ data, className }: Props) {
           />
         ))}
       </div>
-      <span className="bg-darkBlue700 block h-[1px] w-full opacity-25" />
+      <span className="block h-[1px] w-full bg-darkBlue700 opacity-25" />
       <div className="p-6">
         <RoadmapColumn data={filteredData} activeStatus={activeStatus} />
       </div>

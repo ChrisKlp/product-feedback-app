@@ -1,4 +1,4 @@
-import { Feedback, Status } from '@/types'
+import { type Feedback, type Status } from '@/types'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { statuses } from './statuses'

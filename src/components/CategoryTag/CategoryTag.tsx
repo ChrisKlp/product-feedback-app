@@ -7,23 +7,18 @@ type Props = {
   onSelected?: () => void
 }
 
-export function CategoryTag({
-  name,
-  className,
-  isSelected = false,
-  onSelected,
-}: Props) {
+export function CategoryTag({ name, className, isSelected = false }: Props) {
   return (
     <span
       className={cn(
-        'bg-blue200 group-hover:bg-blue300 rounded-dlg inline-flex h-[30px] items-center px-4 transition-colors',
+        'inline-flex h-[30px] items-center rounded-dlg bg-blue200 px-4 transition-colors group-hover:bg-blue300',
         isSelected && 'bg-blue500 group-hover:bg-blue500',
         className,
       )}
     >
       <span
         className={cn(
-          'text-blue500 text-[13px] font-semibold capitalize transition-colors',
+          'text-[13px] font-semibold capitalize text-blue500 transition-colors',
           isSelected && 'text-white',
         )}
       >

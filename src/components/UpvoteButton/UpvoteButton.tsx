@@ -29,11 +29,11 @@ export default function UpvoteButton({
     >
       <span
         className={cn(
-          'bg-blue200 group-hover/upvote:bg-blue300 rounded-dlg @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px] flex h-8 items-center pl-4 pr-3 transition-colors',
+          'flex h-8 items-center rounded-dlg bg-blue200 pl-4 pr-3 transition-colors group-hover/upvote:bg-blue300 @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px]',
           isActive && 'bg-blue500',
         )}
       >
-        <span className="@xl/card:flex-col @xl/card:gap-[6px] flex items-center gap-[10px]">
+        <span className="flex items-center gap-[10px] @xl/card:flex-col @xl/card:gap-[6px]">
           <ArrowUpIcon
             className={cn(
               'text-blue500 transition-colors',
@@ -42,7 +42,7 @@ export default function UpvoteButton({
           />
           <span
             className={cn(
-              'text-darkBlue800 text-[13px] font-semibold capitalize transition-colors',
+              'text-[13px] font-semibold capitalize text-darkBlue800 transition-colors',
               isActive && 'text-white',
             )}
           >

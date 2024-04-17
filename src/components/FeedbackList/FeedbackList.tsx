@@ -1,14 +1,14 @@
 'use client'
 
-import { Feedback } from '@/types'
-import FeedbackCard from '../FeedbackCard/FeedbackCard'
 import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
-import { useCallback, useEffect } from 'react'
-import SortingBar from '../SortingBar/SortingBar'
 import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
-import { useShallow } from 'zustand/react/shallow'
+import type { Feedback } from '@/types'
 import { Filter } from '@/types/index'
-import NoFeedback from '../NoFeedback/NoFeedback'
+import { useCallback, useEffect } from 'react'
+import { useShallow } from 'zustand/react/shallow'
+import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
+import NoFeedback from '@/components/NoFeedback/NoFeedback'
+import SortingBar from '@/components/SortingBar/SortingBar'
 
 type Props = {
   data: Feedback[]
@@ -24,12 +24,8 @@ export default function FeedbackList({ data }: Props) {
       ]),
     )
 
-  const [activeFilter, defaultFilter, resetFilter] = useActiveFilterStore(
-    useShallow((state) => [
-      state.activeFilter,
-      state.defaultFilter,
-      state.resetFilter,
-    ]),
+  const [activeFilter, resetFilter] = useActiveFilterStore(
+    useShallow((state) => [state.activeFilter, state.resetFilter]),
   )
 
   const getFilteredData = useCallback(() => {
@@ -39,7 +35,7 @@ export default function FeedbackList({ data }: Props) {
       )
     }
     return data
-  }, [activeCategory])
+  }, [activeCategory, data, defaultCategory])
 
   const getSortedData = useCallback(
     (data: Feedback[]) => {
@@ -49,14 +45,14 @@ export default function FeedbackList({ data }: Props) {
           return newData.sort((a, b) => a.upvotes - b.upvotes)
         case Filter['Most Comments']:
           return newData.sort((a, b) => {
-            const aComments = a.comments?.length || 0
-            const bComments = b.comments?.length || 0
+            const aComments = a.comments?.length ?? 0
+            const bComments = b.comments?.length ?? 0
             return bComments - aComments
           })
         case Filter['Least Comments']:
           return newData.sort((a, b) => {
-            const aComments = a.comments?.length || 0
-            const bComments = b.comments?.length || 0
+            const aComments = a.comments?.length ?? 0
+            const bComments = b.comments?.length ?? 0
             return aComments - bComments
           })
         default:
@@ -71,7 +67,7 @@ export default function FeedbackList({ data }: Props) {
       resetCategory()
       resetFilter()
     }
-  }, [])
+  }, [resetCategory, resetFilter])
 
   const updatedData = getSortedData(getFilteredData())
 

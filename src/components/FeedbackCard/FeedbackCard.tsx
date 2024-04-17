@@ -1,13 +1,13 @@
 'use client'
 
-import { Feedback } from '@/types'
+import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
-import CommentsIcon from '@/assets/shared/icon-comments.svg'
-import styles from './FeedbackCard.module.css'
+import type { Feedback } from '@/types'
+import routes from '@/utils/routes'
 import { cn } from '@/utils/utils'
 import { useRouter } from 'next/navigation'
-import routes from '@/utils/routes'
+import styles from './FeedbackCard.module.css'
 
 type Props = {
   data: Feedback
@@ -23,18 +23,18 @@ export default function FeedbackCard({
   className,
 }: Props) {
   const router = useRouter()
-  const commentsCount = data.comments?.length || 0
+  const commentsCount = data.comments?.length ?? 0
   return (
     <article
       role="button"
-      className={cn('@container/card group/title', className)}
+      className={cn('group/title @container/card', className)}
       onClick={() => {
         router.push(`${routes.feedback}/${data.id}`)
       }}
     >
       <div
         className={cn(
-          'rounded-dlg @xl/card:px-8 @xl/card:py-7 relative bg-white p-6 lg:px-8',
+          'relative rounded-dlg bg-white p-6 @xl/card:px-8 @xl/card:py-7 lg:px-8',
           showStatus && 'lg:p-8 lg:pt-6',
         )}
       >

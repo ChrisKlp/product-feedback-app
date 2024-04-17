@@ -1,13 +1,13 @@
 'use client'
 
-import { ForwardedRef, forwardRef } from 'react'
+import { type ForwardedRef, forwardRef } from 'react'
 import SortingMenuItem from './SortingMenuItem'
 import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
-import { Filter } from '@/types'
+import type { Filter } from '@/types'
 
 type Ref = ForwardedRef<HTMLUListElement>
 type Props = {
-  activeFilter: string
+  activeFilter: Filter
   onSelect: () => void
 }
 
@@ -23,7 +23,7 @@ function SortingMenu({ activeFilter, onSelect }: Props, ref: Ref) {
   return (
     <ul
       ref={ref}
-      className="shadow-blue absolute left-0 top-[52px] z-50 grid w-[255px] rounded-[10px] bg-white md:top-[62px]"
+      className="absolute left-0 top-[52px] z-50 grid w-[255px] rounded-[10px] bg-white shadow-blue md:top-[62px]"
     >
       {filters.map((filter, i, arr) => (
         <li key={filter}>
@@ -33,7 +33,7 @@ function SortingMenu({ activeFilter, onSelect }: Props, ref: Ref) {
             isActive={activeFilter === filter}
           />
           {i < arr.length - 1 && (
-            <span className="bg-darkBlue800 block h-[1px] w-full opacity-15" />
+            <span className="block h-[1px] w-full bg-darkBlue800 opacity-15" />
           )}
         </li>
       ))}

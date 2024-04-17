@@ -37,6 +37,7 @@ export default function Header() {
     if (isTablet && isOpen) {
       closeNav()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTablet])
 
   return (
@@ -67,7 +68,7 @@ export default function Header() {
         )}
       >
         <div className={styles.categoryWrapper}>
-          {categories.map((category, i) => (
+          {categories.map((category) => (
             <CategoryButtonTag
               key={category}
               name={category}

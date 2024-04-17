@@ -1,4 +1,4 @@
-import { Status } from '@/types'
+import { type Status } from '@/types'
 import { cn, getStatusData } from '@/utils/utils'
 
 type Props = {
@@ -19,7 +19,7 @@ export default function RoadmapTabsItem({
     <button className="group/tabs relative grid items-center" onClick={onClick}>
       <span
         className={cn(
-          'text-darkBlue800 w-full text-center text-[13px] font-bold opacity-40',
+          'w-full text-center text-[13px] font-bold text-darkBlue800 opacity-40',
           isActive && 'opacity-100',
         )}
       >{`${currentStatus?.name} (${counter})`}</span>

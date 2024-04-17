@@ -25,7 +25,7 @@ export default function SortingBar({ className, counter }: Props) {
   return (
     <div
       className={cn(
-        'bg-darkBlue text-blue200 flex h-[56px] items-center px-6 md:h-[72px] md:justify-start md:gap-[38px] md:rounded-[10px]',
+        'flex h-[56px] items-center bg-darkBlue px-6 text-blue200 md:h-[72px] md:justify-start md:gap-[38px] md:rounded-[10px]',
         className,
       )}
     >

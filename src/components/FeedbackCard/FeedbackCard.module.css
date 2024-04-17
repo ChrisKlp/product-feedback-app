@@ -1,5 +1,5 @@
 .statusBar {
-  @apply bg-purple absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px];
+  @apply absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px] bg-purple;
 }
 
 .statusWrapper {
@@ -7,20 +7,20 @@
 }
 
 .statusDot {
-  @apply bg-purple h-2 w-2 rounded-full;
+  @apply h-2 w-2 rounded-full bg-purple;
 }
 
 .content {
-  @apply @xl/card:grid-cols-[auto_1fr_auto]
-  @xl/card:grid-rows-1
-  @xl/card:items-start
-  @xl/card:gap-10
-  @xl/card:[grid-template-areas:'upvote_content_comments']
-  grid
+  @apply grid
   grid-cols-2
   grid-rows-[auto_auto]
   gap-4
-  [grid-template-areas:'content_content''upvote_comments'];
+  [grid-template-areas:'content_content''upvote_comments']
+  @xl/card:grid-cols-[auto_1fr_auto]
+  @xl/card:grid-rows-1
+  @xl/card:items-start
+  @xl/card:gap-10
+  @xl/card:[grid-template-areas:'upvote_content_comments'];
 }
 
 .contentWrapper {
@@ -32,17 +32,17 @@
 }
 
 .commentsWrapper {
-  @apply @xl/card:self-center flex items-center gap-2 justify-self-end [grid-area:_comments];
+  @apply flex items-center gap-2 justify-self-end [grid-area:_comments] @xl/card:self-center;
 }
 
 .title {
-  @apply @xl/card:text-[18px] mb-2 font-bold lg:text-[18px];
+  @apply mb-2 font-bold @xl/card:text-[18px] lg:text-[18px];
 }
 
 .description {
-  @apply @xl/card:mb-3 @xl/card:text-base md:@xl/card:mb-3 mb-2 md:mb-[22px];
+  @apply mb-2 @xl/card:mb-3 @xl/card:text-base md:mb-[22px] md:@xl/card:mb-3;
 }
 
 .commentsCount {
-  @apply text-darkBlue800 text-[13px] font-bold;
+  @apply text-[13px] font-bold text-darkBlue800;
 }

@@ -38,6 +38,7 @@
     "**/*.js",
     ".next/types/**/*.ts",
     "prettier.config.mjs",
+    "postcss.config.mjs",
     "src/components/Roadmap/RoadmapColumn.tsx"
   ],
   "exclude": ["node_modules"]

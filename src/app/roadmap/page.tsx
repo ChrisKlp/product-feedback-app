@@ -2,7 +2,7 @@ import RoadmapGrid from '@/components/Roadmap/RoadmapGrid'
 import RoadmapTabs from '@/components/Roadmap/RoadmapTabs/RoadmapTabs'
 import mockedData from '@/mockedData.json'
 
-let data = mockedData.productRequests
+const data = mockedData.productRequests
 
 export default function RoadmapPage() {
   return (

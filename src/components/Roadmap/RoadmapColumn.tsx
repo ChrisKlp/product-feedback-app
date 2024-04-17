@@ -1,5 +1,5 @@
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
-import { Feedback, Status } from '@/types'
+import { type Feedback, Status } from '@/types'
 import { statuses } from '@/utils/statuses'
 import { getStatusData } from '@/utils/utils'
 
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default function RoadmapColumn({ data, activeStatus }: Props) {
-  const statusData = getStatusData(activeStatus || Status.Planned)
+  const statusData = getStatusData(activeStatus ?? Status.Planned)
   return (
     <section>
       <header className="mb-6 grid gap-1 lg:mb-8">
@@ -22,7 +22,7 @@ export default function RoadmapColumn({ data, activeStatus }: Props) {
             statuses.find(
               (status) =>
                 status.name.toLowerCase() === feedback.status.toLowerCase(),
-            ) || statuses[0]!
+            ) ?? statuses[0]!
           return (
             <FeedbackCard
               key={feedback.id}
