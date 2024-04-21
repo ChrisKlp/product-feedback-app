@@ -15,12 +15,12 @@ export default function SortingMenuItem({
   return (
     <button
       type="button"
-      className="group flex w-full items-center px-6 py-3 text-left text-darkBlue700"
+      className="group flex w-full items-center px-6 py-3 text-left text-@gray"
       onClick={onSelect}
     >
       <span
         className={cn(
-          'flex-1 text-base transition-colors group-hover:text-purple',
+          'flex-1 text-base transition-colors group-hover:text-@purple-500',
         )}
       >
         {label}

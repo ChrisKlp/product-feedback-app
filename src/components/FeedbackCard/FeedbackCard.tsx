@@ -56,7 +56,10 @@ export default function FeedbackCard({
         <div className={styles.content}>
           <div className={styles.contentWrapper}>
             <h3
-              className={cn(styles.title, 'h3 group-hover/title:text-blue500')}
+              className={cn(
+                styles.title,
+                'h3 group-hover/title:text-@blue-500',
+              )}
             >
               {data.title}
             </h3>
@@ -71,7 +74,7 @@ export default function FeedbackCard({
             }}
           />
           <div className={styles.commentsWrapper}>
-            <CommentsIcon className="text-blue300" />
+            <CommentsIcon className="text-@blue-300" />
             <span className={styles.commentsCount}>{commentsCount}</span>
           </div>
         </div>

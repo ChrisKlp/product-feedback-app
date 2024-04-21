@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply text-darkBlue700 bg-blue100 scroll-smooth;
+  @apply bg-@blue-100 text-@gray scroll-smooth;
 }
 
 p {
@@ -43,22 +43,22 @@ p {
   .h2,
   .h3,
   .h4 {
-    @apply text-darkBlue800 font-bold;
+    @apply text-@blue-900 font-bold;
   }
 
   .btn {
-    @apply text-blue200 bg-purple hover:bg-purpleHighlighted rounded-dlg h-[44px] px-4 text-sm font-bold transition-colors md:px-6 md:text-[14px];
+    @apply text-@blue-200 bg-@purple-500 hover:bg-@purple-400 h-[44px] rounded-dlg px-4 text-sm font-bold transition-colors md:px-6 md:text-[14px];
 
     &.btn-blue {
-      @apply bg-blue500 hover:bg-blueHighlighted;
+      @apply bg-@blue-500 hover:bg-@blue-400;
     }
 
     &.btn-darkBlue {
-      @apply bg-darkBlue hover:bg-darkBlueHighlighted;
+      @apply bg-@blue-800 hover:bg-@blue-700;
     }
 
     &.btn-red {
-      @apply bg-red hover:bg-redHighlighted;
+      @apply bg-@red-500 hover:bg-@red-400;
     }
   }
 }

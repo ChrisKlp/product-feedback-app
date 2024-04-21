@@ -3,7 +3,7 @@
 }
 
 .logoWrapper {
-  @apply md:rounded-dlg relative h-[72px] overflow-hidden md:h-full lg:h-[137px];
+  @apply relative h-[72px] overflow-hidden md:h-full md:rounded-dlg lg:h-[137px];
 }
 
 .logoGroup {
@@ -27,18 +27,18 @@
 }
 
 .headerPanel {
-  @apply bg-blue100 fixed bottom-0 right-0 top-[72px] z-50 grid w-[270px] content-start gap-6
+  @apply bg-@blue-100 fixed bottom-0 right-0 top-[72px] z-50 grid w-[270px] content-start gap-6
   p-6 transition-transform
   md:relative md:top-0 md:col-[2_/_span_2] md:w-full md:translate-x-0 md:grid-flow-col md:grid-cols-2 md:gap-[10px] md:bg-transparent md:p-0
   lg:col-span-1 lg:grid-cols-1 lg:grid-rows-2 lg:gap-6;
 }
 
 .categoryWrapper {
-  @apply rounded-dlg flex flex-wrap content-start gap-2 bg-white p-6;
+  @apply flex flex-wrap content-start gap-2 rounded-dlg bg-white p-6;
 }
 
 .statusWrapper {
-  @apply rounded-dlg grid gap-2 bg-white p-6 pt-5;
+  @apply grid gap-2 rounded-dlg bg-white p-6 pt-5;
 }
 
 .statusHeader {
@@ -46,9 +46,9 @@
 }
 
 .statusTitle {
-  @apply text-darkBlue800 text-[18px] font-bold;
+  @apply text-@blue-900 text-[18px] font-bold;
 }
 
 .statusLink {
-  @apply text-blue500 text-[13px] font-semibold underline;
+  @apply text-@blue-500 text-[13px] font-semibold underline;
 }

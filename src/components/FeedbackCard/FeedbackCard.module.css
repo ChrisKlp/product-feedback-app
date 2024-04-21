@@ -1,5 +1,5 @@
 .statusBar {
-  @apply absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px] bg-purple;
+  @apply bg-@purple-500 absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px];
 }
 
 .statusWrapper {
@@ -7,7 +7,7 @@
 }
 
 .statusDot {
-  @apply h-2 w-2 rounded-full bg-purple;
+  @apply bg-@purple-500 h-2 w-2 rounded-full;
 }
 
 .content {
@@ -44,5 +44,5 @@
 }
 
 .commentsCount {
-  @apply text-[13px] font-bold text-darkBlue800;
+  @apply text-@blue-900 text-[13px] font-bold;
 }

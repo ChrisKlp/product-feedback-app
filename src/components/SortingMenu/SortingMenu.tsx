@@ -33,7 +33,7 @@ function SortingMenu({ activeFilter, onSelect }: Props, ref: Ref) {
             isActive={activeFilter === filter}
           />
           {i < arr.length - 1 && (
-            <span className="block h-[1px] w-full bg-darkBlue800 opacity-15" />
+            <span className="block h-[1px] w-full bg-@blue-900 opacity-15" />
           )}
         </li>
       ))}

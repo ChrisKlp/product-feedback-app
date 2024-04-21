@@ -14,12 +14,12 @@ export default function Comment({ data }: Props) {
           <Image alt="avatar" src={avatar} fill />
         </div>
         <div className="flex-1">
-          <p className="font-bold text-darkBlue800">{data.user.name}</p>
+          <p className="font-bold text-@blue-900">{data.user.name}</p>
           <p>@{data.user.username}</p>
         </div>
         <button
           type="button"
-          className="text-[13px] font-semibold text-blue500"
+          className="text-[13px] font-semibold text-@blue-500"
         >
           Reply
         </button>

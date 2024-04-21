@@ -30,7 +30,7 @@ export default function RoadmapTabs({ data, className }: Props) {
           />
         ))}
       </div>
-      <span className="block h-[1px] w-full bg-darkBlue700 opacity-25" />
+      <span className="block h-[1px] w-full bg-@gray opacity-25" />
       <div className="p-6">
         <RoadmapColumn data={filteredData} activeStatus={activeStatus} />
       </div>
