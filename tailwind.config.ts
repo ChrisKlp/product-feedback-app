@@ -16,6 +16,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1.5rem',
+          md: '2.5rem',
+        },
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },

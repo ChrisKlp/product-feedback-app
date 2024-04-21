@@ -39,10 +39,10 @@ export default function SortingBar({ className, counter }: Props) {
           <button
             ref={filterButtonRef}
             type="button"
-            className="flex items-center gap-2 font-bold"
+            className="mr-2 flex items-center gap-2 font-bold"
             onClick={() => setIsOpen(true)}
           >
-            <span>{activeFilter}</span>
+            <span className="line-clamp-1">{activeFilter}</span>
             <ArrowDown />
           </button>
           {isOpen && (

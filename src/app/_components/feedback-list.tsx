@@ -8,7 +8,7 @@ import { useCallback, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import NoFeedback from '@/components/NoFeedback/NoFeedback'
-import SortingBar from '@/components/SortingBar/SortingBar'
+import SortingBar from './sorting-bar'
 
 type Props = {
   data: Feedback[]

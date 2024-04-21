@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-@blue-100 text-@gray scroll-smooth;
+  @apply scroll-smooth bg-@blue-100 text-@gray;
 }
 
 p {
@@ -43,11 +43,11 @@ p {
   .h2,
   .h3,
   .h4 {
-    @apply text-@blue-900 font-bold;
+    @apply font-bold text-@blue-900;
   }
 
   .btn {
-    @apply text-@blue-200 bg-@purple-500 hover:bg-@purple-400 h-[44px] rounded-dlg px-4 text-sm font-bold transition-colors md:px-6 md:text-[14px];
+    @apply h-[44px] rounded-dlg bg-@purple-500 px-4 text-sm font-bold text-@blue-200 transition-colors hover:bg-@purple-400 md:px-6 md:text-[14px];
 
     &.btn-blue {
       @apply bg-@blue-500 hover:bg-@blue-400;
