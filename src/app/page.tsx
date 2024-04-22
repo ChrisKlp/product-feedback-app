@@ -1,7 +1,7 @@
 import mockedData from '@/mockedData.json'
 import Header from '@/app/_components/header/header'
 import FeedbackList from '@/app/_components/feedback-list'
-import { statuses } from '@/utils/statuses'
+import { statuses } from '@/lib/statuses'
 
 const data = mockedData.productRequests
 const newStatuses = statuses.map((status) => ({

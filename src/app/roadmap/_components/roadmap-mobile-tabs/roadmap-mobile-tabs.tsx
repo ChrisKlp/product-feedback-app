@@ -1,7 +1,7 @@
 'use client'
 
 import { type Feedback, Status } from '@/types'
-import { getCurrentStatusData } from '@/utils/utils'
+import { getCurrentStatusData } from '@/lib/utils'
 import { useState } from 'react'
 import RoadmapColumn from '../roadmap-column'
 import RoadmapMobileTabsItem from './roadmap-mobile-tabs-tem'

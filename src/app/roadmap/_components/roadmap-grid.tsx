@@ -2,7 +2,7 @@
 
 import { type Feedback, Status } from '@/types'
 import RoadmapColumn from './roadmap-column'
-import { cn, getCurrentStatusData } from '@/utils/utils'
+import { cn, getCurrentStatusData } from '@/lib/utils'
 
 type Props = {
   data: Feedback[]

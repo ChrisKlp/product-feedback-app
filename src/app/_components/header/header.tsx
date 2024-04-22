@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import HeaderLogoPanel from './header-logo-panel'
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 import HeaderCategoriesPanel from './header-categories-panel'
 import HeaderRoadmapPanel from './header-roadmap-panel'
 import type { TStatus } from '@/types'

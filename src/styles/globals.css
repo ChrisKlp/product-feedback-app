@@ -39,7 +39,7 @@ p {
   .h2,
   .h3,
   .h4 {
-    @apply font-bold text-@blue-900;
+    @apply font-bold text-@blue-800;
   }
 
   .btn {
@@ -50,7 +50,7 @@ p {
     }
 
     &.btn-darkBlue {
-      @apply bg-@blue-800 hover:bg-@blue-700;
+      @apply bg-@blue-900 hover:bg-@blue-700;
     }
 
     &.btn-red {

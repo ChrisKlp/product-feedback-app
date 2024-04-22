@@ -14,7 +14,7 @@ export default function Comment({ data }: Props) {
           <Image alt="avatar" src={avatar} fill />
         </div>
         <div className="flex-1">
-          <p className="font-bold text-@blue-900">{data.user.name}</p>
+          <p className="font-bold text-@blue-800">{data.user.name}</p>
           <p>@{data.user.username}</p>
         </div>
         <button

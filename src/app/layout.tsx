@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Jost } from 'next/font/google'
 

@@ -4,8 +4,8 @@ import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
 import type { Feedback } from '@/types'
-import routes from '@/utils/routes'
-import { cn } from '@/utils/utils'
+import routes from '@/lib/routes'
+import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { statusColors } from 'tailwind.config'
 
@@ -102,7 +102,7 @@ export default function FeedbackCard({
           />
           <div className="flex items-center gap-2 justify-self-end [grid-area:_comments] md:self-center">
             <CommentsIcon className="text-@blue-300" />
-            <span className="text-[13px] font-bold text-@blue-900 lg:text-base">
+            <span className="text-[13px] font-bold text-@blue-800 lg:text-base">
               {commentsCount}
             </span>
           </div>

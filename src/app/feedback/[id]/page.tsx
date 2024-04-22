@@ -1,5 +1,5 @@
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
-import { getFeedbackData } from '@/utils/utils'
+import { getFeedbackData } from '@/lib/utils'
 import { notFound } from 'next/navigation'
 
 type Props = { params: { id: string } }

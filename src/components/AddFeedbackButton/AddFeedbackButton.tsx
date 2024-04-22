@@ -1,7 +1,7 @@
 'use client'
 
-import routes from '@/utils/routes'
-import { cn } from '@/utils/utils'
+import routes from '@/lib/routes'
+import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
 export default function AddFeedbackButton({

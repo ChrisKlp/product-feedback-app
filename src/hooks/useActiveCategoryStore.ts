@@ -1,4 +1,4 @@
-import { categories } from '@/utils/categories'
+import { categories } from '@/lib/categories'
 import { create } from 'zustand'
 
 type ActiveCategoryStore = {

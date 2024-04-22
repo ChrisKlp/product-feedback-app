@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 import ArrowUpIcon from '@/assets/shared/icon-arrow-up.svg'
 
 type Props = {
@@ -57,7 +57,7 @@ export default function UpvoteButton({
           />
           <span
             className={cn(
-              'text-[13px] font-semibold capitalize text-@blue-900 transition-colors',
+              'text-[13px] font-semibold capitalize text-@blue-800 transition-colors',
               isActive && 'text-white',
             )}
           >

@@ -27,7 +27,7 @@ export type Replay = {
   user: User
 }
 
-export enum Filter {
+export enum SortOption {
   'Most Upvotes' = 'Most Upvotes',
   'Least Upvotes' = 'Least Upvotes',
   'Most Comments' = 'Most Comments',

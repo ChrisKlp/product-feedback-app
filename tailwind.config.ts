@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 import containerQueries from '@tailwindcss/container-queries'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 export const statusColors = {
   sPurple: '#AD1FEA',
@@ -33,13 +34,13 @@ const config: Config = {
         },
         '@blue': {
           100: '#F7F8FD',
-          200: '#F2F4FF',
+          200: '#F2F4FE',
           300: '#CFD7FF',
           400: '#7C91F9',
           500: '#4661E6',
           700: '#656EA3',
-          800: '#373F68',
-          900: '#3A4374',
+          800: '#3A4374',
+          900: '#373F68',
         },
         '@gray': '#647196',
         '@red': {
@@ -56,6 +57,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [containerQueries],
+  plugins: [containerQueries, tailwindcssAnimate],
 }
 export default config

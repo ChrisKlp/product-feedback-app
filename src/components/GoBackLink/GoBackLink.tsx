@@ -1,7 +1,7 @@
 'use client'
 
 import ArrowIcon from '@/assets/shared/icon-arrow-left.svg'
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
 type Props = {

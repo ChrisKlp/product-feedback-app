@@ -1,6 +1,6 @@
 import { type Feedback, Status } from '@/types'
-import { statuses } from '@/utils/statuses'
-import { getStatusData } from '@/utils/utils'
+import { statuses } from '@/lib/statuses'
+import { getStatusData } from '@/lib/utils'
 import FeedbackCard from '../../../components/FeedbackCard/FeedbackCard'
 
 type Props = {

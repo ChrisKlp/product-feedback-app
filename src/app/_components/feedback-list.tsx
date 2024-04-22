@@ -1,9 +1,9 @@
 'use client'
 
 import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
-import { useActiveFilterStore } from '@/hooks/useActiveFilterStore'
+import { useActiveSortOptionStore } from '@/hooks/useActiveSortOptionStore'
 import type { Feedback } from '@/types'
-import { Filter } from '@/types/index'
+import { SortOption } from '@/types/index'
 import { useCallback, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import NoFeedback from '@/components/NoFeedback/NoFeedback'
@@ -24,8 +24,8 @@ export default function FeedbackList({ data }: Props) {
       ]),
     )
 
-  const [activeFilter, resetFilter] = useActiveFilterStore(
-    useShallow((state) => [state.activeFilter, state.resetFilter]),
+  const [activeFilter, resetFilter] = useActiveSortOptionStore(
+    useShallow((state) => [state.activeSortOption, state.resetSortOption]),
   )
 
   const getFilteredData = useCallback(() => {
@@ -41,15 +41,15 @@ export default function FeedbackList({ data }: Props) {
     (data: Feedback[]) => {
       const newData = [...data]
       switch (activeFilter) {
-        case Filter['Least Upvotes']:
+        case SortOption['Least Upvotes'] as string:
           return newData.sort((a, b) => a.upvotes - b.upvotes)
-        case Filter['Most Comments']:
+        case SortOption['Most Comments'] as string:
           return newData.sort((a, b) => {
             const aComments = a.comments?.length ?? 0
             const bComments = b.comments?.length ?? 0
             return bComments - aComments
           })
-        case Filter['Least Comments']:
+        case SortOption['Least Comments'] as string:
           return newData.sort((a, b) => {
             const aComments = a.comments?.length ?? 0
             const bComments = b.comments?.length ?? 0
