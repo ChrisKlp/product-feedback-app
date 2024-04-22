@@ -6,9 +6,9 @@ import type { Feedback } from '@/types'
 import { Filter } from '@/types/index'
 import { useCallback, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
-import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import NoFeedback from '@/components/NoFeedback/NoFeedback'
 import SortingBar from './sorting-bar'
+import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 
 type Props = {
   data: Feedback[]

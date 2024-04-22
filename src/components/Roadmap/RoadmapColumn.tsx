@@ -1,7 +1,7 @@
-import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import { type Feedback, Status } from '@/types'
 import { statuses } from '@/utils/statuses'
 import { getStatusData } from '@/utils/utils'
+import FeedbackCard from '../FeedbackCard/FeedbackCard'
 
 type Props = {
   data: Feedback[]
@@ -27,7 +27,7 @@ export default function RoadmapColumn({ data, activeStatus }: Props) {
             <FeedbackCard
               key={feedback.id}
               data={feedback}
-              showStatus={true}
+              withStatus={true}
               color={status.color}
             />
           )

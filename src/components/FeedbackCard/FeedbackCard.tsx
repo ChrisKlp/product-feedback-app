@@ -7,75 +7,104 @@ import type { Feedback } from '@/types'
 import routes from '@/utils/routes'
 import { cn } from '@/utils/utils'
 import { useRouter } from 'next/navigation'
-import styles from './FeedbackCard.module.css'
+import { statusColors } from 'tailwind.config'
 
 type Props = {
   data: Feedback
   color?: string
-  showStatus?: boolean
+  withStatus?: boolean
   className?: string
 }
 
 export default function FeedbackCard({
   data,
-  color = '#AD1FEA',
-  showStatus = false,
+  color = statusColors.sPurple,
+  withStatus = false,
   className,
 }: Props) {
   const router = useRouter()
   const commentsCount = data.comments?.length ?? 0
+
+  const handleClick = () => {
+    router.push(`${routes.feedback}/${data.id}`)
+  }
+
+  const handleUpVoteClick = (upvotes: number) => {
+    console.log(upvotes)
+  }
+
   return (
     <article
       role="button"
-      className={cn('group/title @container/card', className)}
-      onClick={() => {
-        router.push(`${routes.feedback}/${data.id}`)
-      }}
+      className={cn('group/title', className)}
+      onClick={handleClick}
     >
       <div
         className={cn(
-          'relative rounded-dlg bg-white p-6 @xl/card:px-8 @xl/card:py-7 lg:px-8',
-          showStatus && 'lg:p-8 lg:pt-6',
+          // default styles
+          'relative rounded-dlg bg-white p-6',
+          // optional styles
+          !withStatus ? 'md:px-8 md:py-7' : 'md:p-8',
         )}
       >
-        {showStatus && (
+        {withStatus && (
           <>
             <div
-              className={styles.statusBar}
+              className="absolute left-0 right-0 top-0 h-[6px] rounded-t-[5px]"
               style={{ backgroundColor: color }}
             />
-            <div className={styles.statusWrapper}>
+            <div className="mb-4 flex items-center gap-2 md:mb-[14px] lg:mb-2 lg:gap-4">
               <span
-                className={styles.statusDot}
+                className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: color }}
               />
               <p className="capitalize">{data.status}</p>
             </div>
           </>
         )}
-        <div className={styles.content}>
-          <div className={styles.contentWrapper}>
+        <div
+          className={cn(
+            // default styles
+            "relative grid grid-cols-2 justify-items-start gap-4 [grid-template-areas:'content_content''upvote_comments']",
+            // optional styles
+            !withStatus &&
+              "md:grid-cols-[auto_1fr_auto] md:grid-rows-1 md:items-start md:gap-10 md:[grid-template-areas:'upvote_content_comments']",
+          )}
+        >
+          <div className="relative [grid-area:_content]">
             <h3
               className={cn(
-                styles.title,
-                'h3 group-hover/title:text-@blue-500',
+                // default styles
+                'h3 mb-2 font-bold group-hover/title:text-@blue-500 lg:mb-1 lg:text-[18px]',
+                // optional styles
+                !withStatus && 'md:mb-1 md:text-[18px]',
               )}
             >
               {data.title}
             </h3>
-            <p className={styles.description}>{data.description}</p>
+            <p
+              className={cn(
+                // default styles
+                'mb-2 lg:mb-3',
+                // optional styles
+                !withStatus ? 'md:mb-3 md:text-base' : 'md:mb-6',
+              )}
+            >
+              {data.description}
+            </p>
             <CategoryTag name={data.category} />
           </div>
           <UpvoteButton
             value={data.upvotes || 0}
-            className={cn(styles.upvoteWrapper, 'pointer-events-auto')}
-            onClick={() => {
-              console.log(data.upvotes)
-            }}
+            withStatus={withStatus}
+            className={cn('pointer-events-auto relative [grid-area:_upvote]')}
+            onClick={() => handleUpVoteClick(data.upvotes)}
           />
-          <div className={styles.commentsWrapper}>
+          <div className="flex items-center gap-2 justify-self-end [grid-area:_comments] md:self-center">
             <CommentsIcon className="text-@blue-300" />
-            <span className={styles.commentsCount}>{commentsCount}</span>
+            <span className="text-[13px] font-bold text-@blue-900 lg:text-base">
+              {commentsCount}
+            </span>
           </div>
         </div>
       </div>

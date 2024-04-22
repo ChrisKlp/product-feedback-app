@@ -37,6 +37,7 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts",
+    "next.config.mjs",
     "prettier.config.mjs",
     "postcss.config.mjs",
     "src/components/Roadmap/RoadmapColumn.tsx"

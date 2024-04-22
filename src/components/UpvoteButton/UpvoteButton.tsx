@@ -4,13 +4,15 @@ import ArrowUpIcon from '@/assets/shared/icon-arrow-up.svg'
 type Props = {
   value: number
   isActive?: boolean
+  withStatus?: boolean
   onClick: () => void
   className?: string
 }
 
 export default function UpvoteButton({
   value,
-  isActive,
+  isActive = false,
+  withStatus = false,
   onClick,
   className,
 }: Props) {
@@ -29,11 +31,24 @@ export default function UpvoteButton({
     >
       <span
         className={cn(
-          'flex h-8 items-center rounded-dlg bg-@blue-200 pl-4 pr-3 transition-colors group-hover/upvote:bg-@blue-300 @xl/card:h-[53px] @xl/card:w-10 @xl/card:items-start @xl/card:justify-center @xl/card:p-0 @xl/card:pt-[14px]',
+          // default styles
+          'flex h-8 items-center rounded-dlg bg-@blue-200 pl-4 pr-3 transition-colors group-hover/upvote:bg-@blue-300',
+          // optional styles
+          !withStatus
+            ? 'md:h-[53px] md:w-10 md:items-start md:justify-center md:p-0 md:pt-[14px]'
+            : 'lg:h-10 lg:w-[69px]',
+          // active styles
           isActive && 'bg-@blue-500',
         )}
       >
-        <span className="flex items-center gap-[10px] @xl/card:flex-col @xl/card:gap-[6px]">
+        <span
+          className={cn(
+            // default styles
+            'flex items-center gap-[10px]',
+            // without status styles
+            !withStatus && 'md:flex-col md:gap-[6px]',
+          )}
+        >
           <ArrowUpIcon
             className={cn(
               'text-@blue-500 transition-colors',
