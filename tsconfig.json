@@ -40,7 +40,7 @@
     "next.config.mjs",
     "prettier.config.mjs",
     "postcss.config.mjs",
-    "src/components/Roadmap/RoadmapColumn.tsx"
+    "src/app/roadmap/_components/roadmap-column.tsx"
   ],
   "exclude": ["node_modules"]
 }

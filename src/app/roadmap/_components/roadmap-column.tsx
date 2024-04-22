@@ -1,15 +1,15 @@
 import { type Feedback, Status } from '@/types'
 import { statuses } from '@/utils/statuses'
 import { getStatusData } from '@/utils/utils'
-import FeedbackCard from '../FeedbackCard/FeedbackCard'
+import FeedbackCard from '../../../components/FeedbackCard/FeedbackCard'
 
 type Props = {
   data: Feedback[]
-  activeStatus?: Status
+  status?: Status
 }
 
-export default function RoadmapColumn({ data, activeStatus }: Props) {
-  const statusData = getStatusData(activeStatus ?? Status.Planned)
+export default function RoadmapColumn({ data, status }: Props) {
+  const statusData = getStatusData(status ?? Status.Planned)
   return (
     <section>
       <header className="mb-6 grid gap-1 lg:mb-8">

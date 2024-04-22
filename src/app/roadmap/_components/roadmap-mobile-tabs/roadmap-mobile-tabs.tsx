@@ -3,8 +3,8 @@
 import { type Feedback, Status } from '@/types'
 import { getCurrentStatusData } from '@/utils/utils'
 import { useState } from 'react'
-import RoadmapColumn from '../RoadmapColumn'
-import RoadmapTabsItem from './RoadmapTabsItem'
+import RoadmapColumn from '../roadmap-column'
+import RoadmapMobileTabsItem from './roadmap-mobile-tabs-tem'
 
 type Props = {
   data: Feedback[]
@@ -13,7 +13,7 @@ type Props = {
 
 const currentStatusData = [Status.Planned, Status['In-Progress'], Status.Live]
 
-export default function RoadmapTabs({ data, className }: Props) {
+export default function RoadmapMobileTabs({ data, className }: Props) {
   const [activeStatus, setActiveStatus] = useState(Status.Planned)
   const filteredData = getCurrentStatusData(data, activeStatus)
 
@@ -21,7 +21,7 @@ export default function RoadmapTabs({ data, className }: Props) {
     <section className={className}>
       <div className="grid h-[59px] grid-cols-3">
         {currentStatusData.map((status) => (
-          <RoadmapTabsItem
+          <RoadmapMobileTabsItem
             key={status}
             status={status}
             counter={getCurrentStatusData(data, status).length || 0}
@@ -32,7 +32,7 @@ export default function RoadmapTabs({ data, className }: Props) {
       </div>
       <span className="block h-[1px] w-full bg-@gray opacity-25" />
       <div className="p-6">
-        <RoadmapColumn data={filteredData} activeStatus={activeStatus} />
+        <RoadmapColumn data={filteredData} status={activeStatus} />
       </div>
     </section>
   )

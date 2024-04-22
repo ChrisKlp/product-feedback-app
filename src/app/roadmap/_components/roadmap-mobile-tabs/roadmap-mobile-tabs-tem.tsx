@@ -8,7 +8,7 @@ type Props = {
   onClick: () => void
 }
 
-export default function RoadmapTabsItem({
+export default function RoadmapMobileTabsItem({
   counter,
   status,
   isActive = false,
@@ -19,7 +19,7 @@ export default function RoadmapTabsItem({
     <button className="group/tabs relative grid items-center" onClick={onClick}>
       <span
         className={cn(
-          'w-full text-center text-[13px] font-bold text-@blue-900 opacity-40',
+          'w-full text-center text-[13px] font-bold text-@blue-900 opacity-40 transition-opacity group-hover/tabs:opacity-100',
           isActive && 'opacity-100',
         )}
       >{`${currentStatus?.name} (${counter})`}</span>

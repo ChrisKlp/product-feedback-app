@@ -1,7 +1,7 @@
 'use client'
 
 import { type Feedback, Status } from '@/types'
-import RoadmapColumn from './RoadmapColumn'
+import RoadmapColumn from './roadmap-column'
 import { cn, getCurrentStatusData } from '@/utils/utils'
 
 type Props = {
@@ -23,7 +23,7 @@ export default function RoadmapGrid({ data, className }: Props) {
         <RoadmapColumn
           key={status}
           data={getCurrentStatusData(data, status)}
-          activeStatus={status}
+          status={status}
         />
       ))}
     </section>

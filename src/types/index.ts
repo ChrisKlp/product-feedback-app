@@ -39,3 +39,10 @@ export enum Status {
   'In-Progress' = 'In-Progress',
   'Live' = 'Live',
 }
+
+export type TStatus = {
+  count: number
+  name: string
+  description: string
+  color: string
+}
