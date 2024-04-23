@@ -28,16 +28,16 @@ export type Replay = {
 }
 
 export enum SortOption {
-  'Most Upvotes' = 'Most Upvotes',
-  'Least Upvotes' = 'Least Upvotes',
-  'Most Comments' = 'Most Comments',
-  'Least Comments' = 'Least Comments',
+  MOST_UPVOTES = 'Most Upvotes',
+  LEAST_UPVOTES = 'Least Upvotes',
+  MOST_COMMENTS = 'Most Comments',
+  LEAST_COMMENTS = 'Least Comments',
 }
 
 export enum Status {
-  'Planned' = 'Planned',
-  'In-Progress' = 'In-Progress',
-  'Live' = 'Live',
+  PLANNED = 'Planned',
+  IN_PROGRESS = 'In-Progress',
+  LIVE = 'Live',
 }
 
 export type TStatus = {

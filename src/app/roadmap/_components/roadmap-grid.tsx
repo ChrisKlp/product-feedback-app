@@ -9,7 +9,7 @@ type Props = {
   className?: string
 }
 
-const currentStatusData = [Status.Planned, Status['In-Progress'], Status.Live]
+const currentStatusData = Object.values(Status)
 
 export default function RoadmapGrid({ data, className }: Props) {
   return (

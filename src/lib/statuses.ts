@@ -3,17 +3,17 @@ import { statusColors } from 'tailwind.config'
 
 export const statuses = [
   {
-    name: Status.Planned as string,
+    name: Status.PLANNED.toString(),
     description: 'Ideas prioritized for research',
     color: statusColors.sOrange,
   },
   {
-    name: Status['In-Progress'] as string,
+    name: Status.IN_PROGRESS.toString(),
     description: 'Currently being developed',
     color: statusColors.sPurple,
   },
   {
-    name: Status.Live as string,
+    name: Status.LIVE.toString(),
     description: 'Released features',
     color: statusColors.sCyan,
   },

@@ -4,10 +4,10 @@ import { create } from 'zustand'
 const sortOptions = Object.values(SortOption)
 
 type ActiveSortOptionStore = {
-  activeSortOption: string
-  defaultSortOption: string
-  sortOptions: string[]
-  setSortOption: (option: string) => void
+  activeSortOption: SortOption
+  defaultSortOption: SortOption
+  sortOptions: SortOption[]
+  setSortOption: (option: SortOption) => void
   resetSortOption: () => void
 }
 

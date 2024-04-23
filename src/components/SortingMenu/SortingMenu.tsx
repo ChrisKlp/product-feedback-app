@@ -6,6 +6,7 @@ import ArrowDown from '@/assets/shared/icon-arrow-down.svg'
 import CheckIcon from '@/assets/shared/icon-check.svg'
 import { cn } from '@/lib/utils'
 import { useActiveSortOptionStore } from '@/hooks/useActiveSortOptionStore'
+import { type SortOption } from '@/types'
 
 export default function SortingMenu() {
   const sortOptions = useActiveSortOptionStore((state) => state.sortOptions)
@@ -17,7 +18,7 @@ export default function SortingMenu() {
   return (
     <Select.Root
       defaultValue={defaultSortOption}
-      onValueChange={(value) => setSortOption(value)}
+      onValueChange={(value) => setSortOption(value as SortOption)}
     >
       <Select.Trigger
         className="mr-2 flex h-[20px] w-fit items-center gap-2 text-[13px] font-bold text-@blue-200 outline-none focus:ring-1 focus:ring-@blue-500 md:text-[14px] [&>span]:line-clamp-1"
@@ -32,7 +33,7 @@ export default function SortingMenu() {
         <Select.Content
           sideOffset={42}
           position="popper"
-          className="data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-3 relative z-50 w-full max-w-[255px] overflow-hidden rounded-[10px] bg-white shadow-blue"
+          className="relative z-50 w-full max-w-[255px] overflow-hidden rounded-[10px] bg-white shadow-blue data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-3"
         >
           <Select.Viewport className="w-[255px]">
             {sortOptions.map((option, index, array) => (

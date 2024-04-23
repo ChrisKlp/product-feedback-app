@@ -5,7 +5,7 @@ export default function NewFeedbackPage() {
   return (
     <section className="relative rounded-[10px] bg-white p-6 pt-11">
       <Image
-        src={'./assets/icon-new-feedback.svg'}
+        src={'/assets/icon-new-feedback.svg'}
         width={56}
         height={56}
         className="absolute -top-5 w-10 md:-top-7 md:w-14"

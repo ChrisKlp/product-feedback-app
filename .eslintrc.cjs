@@ -37,5 +37,6 @@ const config = {
       },
     ],
   },
+  ignorePatterns: ['node_modules', 'next.config.mjs'],
 }
 module.exports = config

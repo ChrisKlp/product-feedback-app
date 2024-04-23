@@ -4,17 +4,17 @@ import { type Feedback, Status } from '@/types'
 import { getCurrentStatusData } from '@/lib/utils'
 import { useState } from 'react'
 import RoadmapColumn from '../roadmap-column'
-import RoadmapMobileTabsItem from './roadmap-mobile-tabs-tem'
+import RoadmapMobileTabsItem from './roadmap-mobile-tabs-item'
 
 type Props = {
   data: Feedback[]
   className?: string
 }
 
-const currentStatusData = [Status.Planned, Status['In-Progress'], Status.Live]
+const currentStatusData = Object.values(Status)
 
 export default function RoadmapMobileTabs({ data, className }: Props) {
-  const [activeStatus, setActiveStatus] = useState(Status.Planned)
+  const [activeStatus, setActiveStatus] = useState(Status.PLANNED)
   const filteredData = getCurrentStatusData(data, activeStatus)
 
   return (

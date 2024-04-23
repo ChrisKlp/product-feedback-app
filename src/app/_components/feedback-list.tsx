@@ -41,15 +41,15 @@ export default function FeedbackList({ data }: Props) {
     (data: Feedback[]) => {
       const newData = [...data]
       switch (activeFilter) {
-        case SortOption['Least Upvotes'] as string:
+        case SortOption.LEAST_UPVOTES:
           return newData.sort((a, b) => a.upvotes - b.upvotes)
-        case SortOption['Most Comments'] as string:
+        case SortOption.MOST_COMMENTS:
           return newData.sort((a, b) => {
             const aComments = a.comments?.length ?? 0
             const bComments = b.comments?.length ?? 0
             return bComments - aComments
           })
-        case SortOption['Least Comments'] as string:
+        case SortOption.LEAST_COMMENTS:
           return newData.sort((a, b) => {
             const aComments = a.comments?.length ?? 0
             const bComments = b.comments?.length ?? 0

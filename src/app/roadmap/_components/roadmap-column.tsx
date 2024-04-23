@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default function RoadmapColumn({ data, status }: Props) {
-  const statusData = getStatusData(status ?? Status.Planned)
+  const statusData = getStatusData(status ?? Status.PLANNED)
   return (
     <section>
       <header className="mb-6 grid gap-1 lg:mb-8">
