@@ -25,3 +25,7 @@ export function getStatusData(status: Status) {
 export function getFeedbackData(id: number) {
   return data.productRequests.find((feedback) => feedback.id === id)
 }
+
+export function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
