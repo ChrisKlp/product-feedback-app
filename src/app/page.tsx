@@ -13,7 +13,7 @@ const newStatuses = statuses.map((status) => ({
 
 export default function Home() {
   return (
-    <div className="c-container md:px-10 md:pt-14 lg:grid-flow-col lg:grid-cols-[255px_1fr] lg:gap-[30px] lg:pt-[94px]">
+    <div className="c-container grid md:px-10 md:pt-14 lg:grid-flow-col lg:grid-cols-[255px_1fr] lg:gap-[30px] lg:pt-[94px]">
       <Header statuses={newStatuses} />
       <main>
         <FeedbackList data={data} />
