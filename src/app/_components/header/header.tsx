@@ -32,8 +32,9 @@ export default function Header({ statusData }: Props) {
       {isMenuOpen && (
         <div
           className={cn(
-            'fixed z-50 h-full w-full bg-black opacity-50 md:hidden',
+            'fixed z-50 h-full w-full bg-black opacity-50 animate-in fade-in-0 md:hidden',
           )}
+          onClick={closeMenu}
         />
       )}
       <div

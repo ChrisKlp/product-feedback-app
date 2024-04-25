@@ -4,6 +4,8 @@ import desktopBg from '@/assets/suggestions/desktop/background-header.png'
 import HamburgerMenu from '@/assets/shared/mobile/icon-hamburger.svg'
 import IconClose from '@/assets/shared/mobile/icon-close.svg'
 import { getImageProps } from 'next/image'
+import Link from 'next/link'
+import routes from '@/lib/routes'
 
 type Props = {
   isMenuOpen: boolean
@@ -34,9 +36,11 @@ export default function HeaderLogoPanel({ isMenuOpen, toggleMenu }: Props) {
       </picture>
       <div className="relative flex h-full w-full items-center justify-between px-8 text-white md:items-end md:p-6">
         <div>
-          <h1 className="text-[15px] font-bold md:text-[20px]">
-            Frontend Mentor
-          </h1>
+          <Link href={routes.home}>
+            <h1 className="text-[15px] font-bold md:text-[20px]">
+              Frontend Mentor
+            </h1>
+          </Link>
           <p className="text-[13px] font-medium opacity-75 md:text-[15px]">
             Feedback Board
           </p>
