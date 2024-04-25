@@ -1,19 +1,20 @@
 import { CategoryButtonTag } from '@/components/CategoryTag/CategoryTag'
-import { useActiveCategoryStore } from '@/hooks/useActiveCategoryStore'
+import { categoryEnum } from '@/db/schema'
 
-export default function HeaderCategoriesPanel() {
-  const activeCategory = useActiveCategoryStore((state) => state.activeCategory)
-  const categories = useActiveCategoryStore((state) => state.categories)
-  const setCategory = useActiveCategoryStore((state) => state.setCategory)
+type Props = {
+  closeMenu: () => void
+}
+
+export default function HeaderCategoriesPanel({ closeMenu }: Props) {
   return (
     <div className="flex flex-wrap content-start gap-2 rounded-dlg bg-white p-6">
-      {categories.map((category) => (
+      {categoryEnum.enumValues.map((category) => (
         <CategoryButtonTag
           key={category}
           name={category}
-          isSelected={category === activeCategory}
+          defaultCategory={categoryEnum.enumValues[0]}
           className="mb-[6px]"
-          onSelected={() => setCategory(category)}
+          onClick={closeMenu}
         />
       ))}
     </div>

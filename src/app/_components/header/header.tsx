@@ -5,13 +5,13 @@ import HeaderLogoPanel from './header-logo-panel'
 import { cn } from '@/lib/utils'
 import HeaderCategoriesPanel from './header-categories-panel'
 import HeaderRoadmapPanel from './header-roadmap-panel'
-import type { TStatus } from '@/types'
+import type { StatusData } from '@/types'
 
 type Props = {
-  statuses: TStatus[]
+  statusData: StatusData
 }
 
-export default function Header({ statuses }: Props) {
+export default function Header({ statusData }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -48,8 +48,8 @@ export default function Header({ statuses }: Props) {
           isMenuOpen ? 'translate-x-0' : 'translate-x-[270px]',
         )}
       >
-        <HeaderCategoriesPanel />
-        <HeaderRoadmapPanel closeMenu={closeMenu} statuses={statuses} />
+        <HeaderCategoriesPanel closeMenu={closeMenu} />
+        <HeaderRoadmapPanel closeMenu={closeMenu} statusData={statusData} />
       </div>
     </header>
   )

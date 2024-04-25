@@ -13,28 +13,28 @@ import {
 export const pgTable = pgTableCreator((name) => `feedback_app_${name}`)
 
 export const statusEnum = pgEnum('status', [
-  'Suggestion',
-  'Planned',
-  'In-Progress',
-  'Live',
+  'suggestion',
+  'planned',
+  'in-progress',
+  'live',
 ])
 
 export const categoryEnum = pgEnum('category', [
-  'All',
-  'UI',
-  'UX',
-  'Enhancement',
-  'Bug',
-  'Feature',
+  'all',
+  'ui',
+  'ux',
+  'enhancement',
+  'bug',
+  'feature',
 ])
 
 export const feedbacks = pgTable('feedbacks', {
   id: uuid('id').primaryKey().defaultRandom().notNull(),
   title: text('title').notNull(),
   userId: text('userId').notNull(),
-  category: categoryEnum('category').default('All').notNull(),
+  category: categoryEnum('category').default('all').notNull(),
   upvotes: integer('upvotes').default(0).notNull(),
-  status: statusEnum('status').default('Suggestion').notNull(),
+  status: statusEnum('status').default('suggestion').notNull(),
   description: text('description').notNull(),
 })
 

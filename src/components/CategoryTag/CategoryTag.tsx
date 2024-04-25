@@ -1,10 +1,18 @@
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+
+type ButtonProps = {
+  name: string
+  className?: string
+  defaultCategory: string
+  onClick: () => void
+}
 
 type Props = {
   name: string
-  isSelected?: boolean
   className?: string
-  onSelected?: () => void
+  isSelected?: boolean
 }
 
 export function CategoryTag({ name, className, isSelected = false }: Props) {
@@ -20,6 +28,7 @@ export function CategoryTag({ name, className, isSelected = false }: Props) {
         className={cn(
           'text-[13px] font-semibold capitalize text-@blue-500 transition-colors',
           isSelected && 'text-white',
+          (name === 'ui' || name === 'ux') && 'uppercase',
         )}
       >
         {name}
@@ -31,16 +40,25 @@ export function CategoryTag({ name, className, isSelected = false }: Props) {
 export function CategoryButtonTag({
   name,
   className,
-  isSelected = false,
-  onSelected,
-}: Props) {
+  defaultCategory,
+  onClick,
+}: ButtonProps) {
+  const searchParams = useSearchParams()
+  const activeCategory = searchParams.get('category') ?? defaultCategory
+  const isSelected = name === activeCategory
   return (
-    <button
+    <Link
       type="button"
       className={cn('group', isSelected && 'pointer-events-none', className)}
-      onClick={onSelected}
+      href={{
+        pathname: '/',
+        query: {
+          category: name,
+        },
+      }}
+      onClick={onClick}
     >
       <CategoryTag name={name} isSelected={isSelected} />
-    </button>
+    </Link>
   )
 }

@@ -1,8 +1,19 @@
 import { db } from '@/db'
-import { type IFeedback, comments, feedbacks } from '@/db/schema'
-import { count, eq, isNull } from 'drizzle-orm'
+import {
+  type Status,
+  categoryEnum,
+  comments,
+  feedbacks,
+  type Category,
+  type IFeedback,
+} from '@/db/schema'
+import { SortOption } from '@/types'
+import { asc, count, desc, eq, isNull } from 'drizzle-orm'
 
-export async function getFeedbacks() {
+export async function getFeedbacks(categoryParam: string, sortParam: string) {
+  const categories = categoryEnum.enumValues
+  const convertedCategoryParam = categoryParam.toLowerCase() as Category
+
   const allFeedbacks = await db
     .select({
       id: feedbacks.id,
@@ -15,24 +26,59 @@ export async function getFeedbacks() {
       commentsCount: count(comments.id),
     })
     .from(feedbacks)
+    .where(
+      categories.includes(convertedCategoryParam) &&
+        convertedCategoryParam !== 'all'
+        ? eq(feedbacks.category, convertedCategoryParam as Category)
+        : undefined,
+    )
     .leftJoin(comments, eq(comments.feedbackId, feedbacks.id))
+    .orderBy(() => {
+      switch (sortParam) {
+        case SortOption.LEAST_UPVOTES.toString():
+          return asc(feedbacks.upvotes)
+        case SortOption.MOST_COMMENTS.toString():
+          return desc(count(comments.id))
+        case SortOption.LEAST_COMMENTS.toString():
+          return asc(count(comments.id))
+        default:
+          return desc(feedbacks.upvotes)
+      }
+    })
     .groupBy(feedbacks.id)
 
   return allFeedbacks
 }
 
 export async function getFeedback(feedbackId: string) {
-  const singleFeedback = await db.query.feedbacks.findFirst({
-    where: eq(feedbacks.id, feedbackId),
-    with: {
-      comments: {
-        with: {
-          children: true,
+  const singleFeedback = await db.transaction(async (tx) => {
+    const feedbackData = await tx.query.feedbacks.findFirst({
+      where: eq(feedbacks.id, feedbackId),
+      with: {
+        comments: {
+          with: {
+            children: true,
+          },
+          where: isNull(comments.parentId),
         },
-        where: isNull(comments.parentId),
       },
-    },
+    })
+
+    const commentsCount = await tx
+      .select({ commentsCount: count(comments.id) })
+      .from(comments)
+      .where(eq(comments.feedbackId, feedbackId))
+
+    if (feedbackData) {
+      return {
+        ...feedbackData,
+        commentsCount: commentsCount[0]?.commentsCount ?? 0,
+      }
+    }
+
+    return null
   })
+
   return singleFeedback
 }
 
@@ -56,4 +102,35 @@ export async function updateFeedback(
     .returning()
 
   return updatedFeedback[0]
+}
+
+export async function getFeedbackStatusData() {
+  const feedbackStatusData = await db.transaction(async (tx) => {
+    const statusData = await tx
+      .select({
+        status: feedbacks.status,
+        count: count(feedbacks.id),
+      })
+      .from(feedbacks)
+      .groupBy(feedbacks.status)
+
+    const totalCount = await tx
+      .select({ totalCount: count(feedbacks.id) })
+      .from(feedbacks)
+
+    const stautsObject = statusData.reduce(
+      (acc, curr) => {
+        acc[curr.status] = curr.count
+        return acc
+      },
+      {} as Record<Status, number>,
+    )
+
+    return {
+      ...stautsObject,
+      total: totalCount[0]?.totalCount ?? 0,
+    }
+  })
+
+  return feedbackStatusData
 }

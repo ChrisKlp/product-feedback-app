@@ -1,15 +1,18 @@
 import StatusItemCounter from '@/components/StatusItemCounter/StatusItemCounter'
-import type { TStatus } from '@/types'
+import type { StatusData } from '@/types'
 import routes from '@/lib/routes'
 import Link from 'next/link'
 import React from 'react'
+import { getStatuses } from '@/lib/statuses'
 
 type Props = {
   closeMenu: () => void
-  statuses: TStatus[]
+  statusData: StatusData
 }
 
-export default function HeaderRoadmapPanel({ closeMenu, statuses }: Props) {
+export default function HeaderRoadmapPanel({ closeMenu, statusData }: Props) {
+  const statuses = getStatuses(statusData)
+
   return (
     <div className="pt-5; grid gap-2 rounded-dlg bg-white p-6">
       <div className="mb-4 flex items-center justify-between">

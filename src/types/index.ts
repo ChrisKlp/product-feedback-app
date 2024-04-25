@@ -1,3 +1,5 @@
+import type { SComment, SFeedback } from '@/db/schema'
+
 export type Feedback = {
   id: number
   title: string
@@ -28,16 +30,10 @@ export type Replay = {
 }
 
 export enum SortOption {
-  MOST_UPVOTES = 'Most Upvotes',
-  LEAST_UPVOTES = 'Least Upvotes',
-  MOST_COMMENTS = 'Most Comments',
-  LEAST_COMMENTS = 'Least Comments',
-}
-
-export enum Status {
-  PLANNED = 'Planned',
-  IN_PROGRESS = 'In-Progress',
-  LIVE = 'Live',
+  MOST_UPVOTES = 'most-upvotes',
+  LEAST_UPVOTES = 'least-upvotes',
+  MOST_COMMENTS = 'most-comments',
+  LEAST_COMMENTS = 'least-comments',
 }
 
 export type TStatus = {
@@ -45,4 +41,20 @@ export type TStatus = {
   name: string
   description: string
   color: string
+}
+
+export type TFeedback = SFeedback & {
+  commentsCount: number
+}
+
+export type TFeedbackWithComments = TFeedback & {
+  comments?: SComment[] & { children?: SComment[] }
+}
+
+export type StatusData = {
+  total: number
+  suggestion: number
+  planned: number
+  'in-progress': number
+  live: number
 }
