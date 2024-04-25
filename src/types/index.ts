@@ -1,24 +1,5 @@
 import type { SComment, SFeedback } from '@/db/schema'
 
-export type User = {
-  image: string
-  name: string
-  username: string
-}
-
-export type TComment = {
-  id: number
-  content: string
-  user: User
-  replies?: Replay[]
-}
-
-export type Replay = {
-  content: string
-  replyingTo: string
-  user: User
-}
-
 export enum SortOption {
   MOST_UPVOTES = 'most-upvotes',
   LEAST_UPVOTES = 'least-upvotes',
@@ -32,6 +13,10 @@ export type TFeedback = SFeedback & {
 
 export type TFeedbackWithComments = TFeedback & {
   comments?: SComment[] & { children?: SComment[] }
+}
+
+export type TComment = SComment & {
+  children?: SComment[]
 }
 
 export type StatusData = {

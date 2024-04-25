@@ -1,17 +1,16 @@
 import Image from 'next/image'
 import ReplayButton from './ReplayButton'
-import type { SComment } from '@/db/schema'
-import { cn, getMockedUser } from '@/lib/utils'
+import { getMockedUser } from '@/lib/utils'
+import { type TComment } from '@/types'
 
 type Props = {
-  data: SComment
-  isSeparatorHidden?: boolean
+  data: TComment
 }
 
-export default function Comment({ data, isSeparatorHidden = false }: Props) {
+export default function Comment({ data }: Props) {
   const user = getMockedUser(data.userId)
   return (
-    <article className={cn(!isSeparatorHidden && 'mb-6 md:mb-8')}>
+    <article>
       <header className="mb-4 flex w-full items-center gap-4 md:gap-8">
         <div className="relative h-10 w-10 overflow-hidden rounded-full">
           {user && <Image alt="avatar" src={user.image} fill />}
@@ -20,14 +19,17 @@ export default function Comment({ data, isSeparatorHidden = false }: Props) {
           <p className="font-bold text-@blue-800 md:text-[14px]">
             {user?.name}
           </p>
-          <p className="md:text-[14px]">{user?.username}</p>
+          <p className="md:text-[14px]">@{user?.username}</p>
         </div>
         <ReplayButton />
       </header>
-      <p className="md:text-[15px]">{data.content}</p>
-      {!isSeparatorHidden && (
-        <div className="mt-6 h-[1px] w-full bg-@blue-700 opacity-20 md:mt-8" />
-      )}
+
+      <p className="md:pl-[72px] md:text-[15px]">
+        {data.replyingTo && (
+          <span className="font-bold text-@purple-500">{`@${data.replyingTo} `}</span>
+        )}
+        {data.content}
+      </p>
     </article>
   )
 }

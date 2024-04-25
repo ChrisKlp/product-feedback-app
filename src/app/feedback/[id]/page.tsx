@@ -1,4 +1,4 @@
-import Comment from '@/components/Comment/Comment'
+import CommentWrapper from '@/components/Comment/CommentWrapper'
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import { getFeedback } from '@/data-access/feedbacks'
 import { notFound } from 'next/navigation'
@@ -19,12 +19,10 @@ export default async function SingleFeedbackPage({ params: { id } }: Props) {
         <h2 className="h2 mb-6 text-[18px] md:mb-7">{`${feedbackData.commentsCount} Comments`}</h2>
         <div>
           {feedbackData.comments.map((comment, i, arr) => (
-            <Comment
+            <CommentWrapper
               key={comment.id}
               data={comment}
-              isSeparatorHidden={
-                i === arr.length - 1 || !!comment.children.length
-              }
+              isSeparatorHidden={i === arr.length - 1}
             />
           ))}
         </div>

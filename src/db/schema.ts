@@ -46,6 +46,7 @@ export const comments = pgTable('comments', {
     .references(() => feedbacks.id, { onDelete: 'cascade' })
     .notNull(),
   parentId: uuid('parentId').references((): AnyPgColumn => comments.id),
+  replyingTo: text('replyingTo'),
   createdAt: timestamp('createdAt').defaultNow().notNull(),
 })
 
