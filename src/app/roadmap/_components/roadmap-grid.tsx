@@ -1,17 +1,14 @@
-'use client'
-
-import { type Feedback, Status } from '@/types'
+import { cn } from '@/lib/utils'
+import type { ClientStatusData, TFeedback } from '@/types'
 import RoadmapColumn from './roadmap-column'
-import { cn, getCurrentStatusData } from '@/lib/utils'
 
 type Props = {
-  data: Feedback[]
+  data: TFeedback[]
+  statusData: ClientStatusData[]
   className?: string
 }
 
-const currentStatusData = Object.values(Status)
-
-export default function RoadmapGrid({ data, className }: Props) {
+export default function RoadmapGrid({ data, statusData, className }: Props) {
   return (
     <section
       className={cn(
@@ -19,13 +16,18 @@ export default function RoadmapGrid({ data, className }: Props) {
         className,
       )}
     >
-      {currentStatusData.map((status) => (
-        <RoadmapColumn
-          key={status}
-          data={getCurrentStatusData(data, status)}
-          status={status}
-        />
-      ))}
+      {statusData.map((status) => {
+        const filteredData = data.filter(
+          (feedback) => feedback.status === status.name.toLowerCase(),
+        )
+        return (
+          <RoadmapColumn
+            key={status.name}
+            data={filteredData}
+            statusData={status}
+          />
+        )
+      })}
     </section>
   )
 }

@@ -1,38 +1,48 @@
 'use client'
 
-import { type Feedback, Status } from '@/types'
-import { getCurrentStatusData } from '@/lib/utils'
+import type { ClientStatusData, TFeedback } from '@/types'
 import { useState } from 'react'
 import RoadmapColumn from '../roadmap-column'
 import RoadmapMobileTabsItem from './roadmap-mobile-tabs-item'
 
 type Props = {
-  data: Feedback[]
+  data: TFeedback[]
+  statusData: ClientStatusData[]
   className?: string
 }
 
-const currentStatusData = Object.values(Status)
-
-export default function RoadmapMobileTabs({ data, className }: Props) {
-  const [activeStatus, setActiveStatus] = useState(Status.PLANNED)
-  const filteredData = getCurrentStatusData(data, activeStatus)
+export default function RoadmapMobileTabs({
+  data,
+  statusData,
+  className,
+}: Props) {
+  const [activeStatus, setActiveStatus] = useState(
+    statusData[0]?.name ?? 'In-Progress',
+  )
+  const filteredData = data.filter(
+    (feedback) => feedback.status === activeStatus.toLowerCase(),
+  )
+  const activeStatusData = statusData.find(
+    (status) => status.name === activeStatus,
+  )
 
   return (
     <section className={className}>
       <div className="grid h-[59px] grid-cols-3">
-        {currentStatusData.map((status) => (
+        {statusData.map((status) => (
           <RoadmapMobileTabsItem
-            key={status}
+            key={status.name}
             status={status}
-            counter={getCurrentStatusData(data, status).length || 0}
-            isActive={activeStatus === status}
-            onClick={() => setActiveStatus(status)}
+            isActive={activeStatus === status.name}
+            onClick={() => setActiveStatus(status.name)}
           />
         ))}
       </div>
       <span className="block h-[1px] w-full bg-@gray opacity-25" />
       <div className="p-6">
-        <RoadmapColumn data={filteredData} status={activeStatus} />
+        {activeStatusData && (
+          <RoadmapColumn data={filteredData} statusData={activeStatusData} />
+        )}
       </div>
     </section>
   )

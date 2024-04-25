@@ -1,20 +1,17 @@
-import { type Status } from '@/types'
-import { cn, getStatusData } from '@/lib/utils'
+import { cn } from '@/lib/utils'
+import type { ClientStatusData } from '@/types'
 
 type Props = {
-  status: Status
-  counter: number
+  status: ClientStatusData
   isActive?: boolean
   onClick: () => void
 }
 
 export default function RoadmapMobileTabsItem({
-  counter,
   status,
   isActive = false,
   onClick,
 }: Props) {
-  const currentStatus = getStatusData(status)
   return (
     <button className="group/tabs relative grid items-center" onClick={onClick}>
       <span
@@ -22,13 +19,13 @@ export default function RoadmapMobileTabsItem({
           'w-full text-center text-[13px] font-bold text-@blue-800 opacity-40 transition-opacity group-hover/tabs:opacity-100',
           isActive && 'opacity-100',
         )}
-      >{`${currentStatus?.name} (${counter})`}</span>
+      >{`${status.name} (${status.count})`}</span>
       <span
         className={cn(
           'absolute bottom-0 h-1 w-full opacity-0',
           isActive && 'opacity-100',
         )}
-        style={{ backgroundColor: currentStatus?.color }}
+        style={{ backgroundColor: status.color }}
       />
     </button>
   )

@@ -1,14 +1,14 @@
 import { db } from '@/db'
 import {
-  type Status,
   categoryEnum,
   comments,
   feedbacks,
   type Category,
   type IFeedback,
+  type Status,
 } from '@/db/schema'
 import { SortOption } from '@/types'
-import { asc, count, desc, eq, isNull } from 'drizzle-orm'
+import { asc, count, desc, eq, isNull, ne } from 'drizzle-orm'
 
 export async function getFeedbacks(categoryParam: string, sortParam: string) {
   const categories = categoryEnum.enumValues
@@ -133,4 +133,25 @@ export async function getFeedbackStatusData() {
   })
 
   return feedbackStatusData
+}
+
+export async function getFeedbacksWithRoadmapStatus() {
+  const feedbacksWithRoadmapStatus = await db
+    .select({
+      id: feedbacks.id,
+      title: feedbacks.title,
+      userId: feedbacks.userId,
+      category: feedbacks.category,
+      upvotes: feedbacks.upvotes,
+      status: feedbacks.status,
+      description: feedbacks.description,
+      commentsCount: count(comments.id),
+    })
+    .from(feedbacks)
+    .where(ne(feedbacks.status, 'suggestion'))
+    .leftJoin(comments, eq(comments.feedbackId, feedbacks.id))
+    .orderBy(desc(feedbacks.upvotes))
+    .groupBy(feedbacks.id)
+
+  return feedbacksWithRoadmapStatus
 }

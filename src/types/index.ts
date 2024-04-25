@@ -41,3 +41,10 @@ export type StatusData = {
   'in-progress': number
   live: number
 }
+
+export type ClientStatusData = {
+  count: number
+  name: string
+  description: string
+  color: string
+}
