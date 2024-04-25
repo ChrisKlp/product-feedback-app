@@ -7,7 +7,7 @@ export default function NewFeedbackLayout({
 }) {
   return (
     <div className="c-container-2">
-      <SecondaryHeader showButton={false} className="mb-14" />
+      <SecondaryHeader withEditButton={false} className="mb-14" />
       <main>{children}</main>
     </div>
   )

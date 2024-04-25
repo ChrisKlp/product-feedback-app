@@ -1,18 +1,17 @@
-'use client'
-
 import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
 import type { TFeedback, TFeedbackWithComments } from '@/types'
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
-import { useRouter } from 'next/navigation'
 import { statusColors } from 'tailwind.config'
+import Link from 'next/link'
 
 type Props = {
   data: TFeedback | TFeedbackWithComments
   color?: string
   withStatus?: boolean
+  withLinks?: boolean
   className?: string
 }
 
@@ -20,24 +19,13 @@ export default function FeedbackCard({
   data,
   color = statusColors.sPurple,
   withStatus = false,
+  withLinks = true,
   className,
 }: Props) {
-  const router = useRouter()
-
-  const handleClick = () => {
-    router.push(`${routes.feedback}/${data.id}`)
-  }
-
-  const handleUpVoteClick = (upvotes: number) => {
-    console.log(upvotes)
-  }
+  const href = `${routes.feedback}/${data.id}`
 
   return (
-    <article
-      role="button"
-      className={cn('group/title', className)}
-      onClick={handleClick}
-    >
+    <article className={className}>
       <div
         className={cn(
           // default styles
@@ -71,16 +59,21 @@ export default function FeedbackCard({
           )}
         >
           <div className="relative [grid-area:_content]">
-            <h3
-              className={cn(
-                // default styles
-                'h3 mb-2 font-bold group-hover/title:text-@blue-500 lg:mb-1 lg:text-[18px]',
-                // optional styles
-                !withStatus && 'md:mb-1 md:text-[18px]',
-              )}
+            <Link
+              href={href}
+              className={cn('group', !withLinks && 'pointer-events-none')}
             >
-              {data.title}
-            </h3>
+              <h3
+                className={cn(
+                  // default styles
+                  'h3 mb-2 font-bold transition-colors group-hover:text-@blue-500 lg:mb-1 lg:text-[18px]',
+                  // optional styles
+                  !withStatus && 'md:mb-1 md:text-[18px]',
+                )}
+              >
+                {data.title}
+              </h3>
+            </Link>
             <p
               className={cn(
                 // default styles
@@ -94,17 +87,22 @@ export default function FeedbackCard({
             <CategoryTag name={data.category} />
           </div>
           <UpvoteButton
-            value={data.upvotes || 0}
+            data={data}
             withStatus={withStatus}
-            className={cn('pointer-events-auto relative [grid-area:_upvote]')}
-            onClick={() => handleUpVoteClick(data.upvotes)}
+            className={cn('relative [grid-area:_upvote]')}
           />
-          <div className="flex items-center gap-2 justify-self-end [grid-area:_comments] md:self-center">
+          <Link
+            href={href}
+            className={cn(
+              'flex items-center gap-2 self-center justify-self-end [grid-area:_comments]',
+              !withLinks && 'pointer-events-none',
+            )}
+          >
             <CommentsIcon className="text-@blue-300" />
             <span className="text-[13px] font-bold text-@blue-800 lg:text-base">
               {data.commentsCount}
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </article>

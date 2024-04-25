@@ -15,7 +15,7 @@ export default async function SingleFeedbackPage({ params: { id } }: Props) {
 
   return (
     <section>
-      <FeedbackCard data={feedbackData} className="pointer-events-none" />
+      <FeedbackCard data={feedbackData} withLinks={false} />
     </section>
   )
 }

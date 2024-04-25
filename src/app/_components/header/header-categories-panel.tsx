@@ -1,4 +1,4 @@
-import { CategoryButtonTag } from '@/components/CategoryTag/CategoryTag'
+import { CategoryButtonTag } from '@/components/CategoryTag/CategoryButtonTag'
 import { categoryEnum } from '@/db/schema'
 
 type Props = {
