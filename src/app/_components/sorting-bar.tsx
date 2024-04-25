@@ -1,5 +1,3 @@
-'use client'
-
 import SuggestionsIcon from '@/assets/suggestions/icon-suggestions.svg'
 import AddFeedbackButton from '@/components/AddFeedbackButton/AddFeedbackButton'
 import SortingMenu from '@/components/SortingMenu/SortingMenu'

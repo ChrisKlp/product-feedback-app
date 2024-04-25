@@ -5,23 +5,32 @@ import * as Select from '@radix-ui/react-select'
 import ArrowDown from '@/assets/shared/icon-arrow-down.svg'
 import CheckIcon from '@/assets/shared/icon-check.svg'
 import { cn } from '@/lib/utils'
-import { useActiveSortOptionStore } from '@/hooks/useActiveSortOptionStore'
-import { type SortOption } from '@/types'
+import { SortOption } from '@/types'
+import { useRouter, useSearchParams } from 'next/navigation'
+import routes from '@/lib/routes'
 
 export default function SortingMenu() {
-  const sortOptions = useActiveSortOptionStore((state) => state.sortOptions)
-  const defaultSortOption = useActiveSortOptionStore(
-    (state) => state.defaultSortOption,
-  )
-  const setSortOption = useActiveSortOptionStore((state) => state.setSortOption)
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  const initSortParam = searchParams.get('sort')
+
+  const sortOptions = Object.values(SortOption)
+  const defaultValue = initSortParam ?? SortOption.MOST_UPVOTES
+
+  const handleValueChange = (value: string) => {
+    const newParams = new URLSearchParams(searchParams.toString())
+    newParams.set('sort', value)
+    router.push(`${routes.home}?${newParams.toString()}`)
+  }
 
   return (
     <Select.Root
-      defaultValue={defaultSortOption}
-      onValueChange={(value) => setSortOption(value as SortOption)}
+      defaultValue={defaultValue}
+      onValueChange={(value) => handleValueChange(value)}
     >
       <Select.Trigger
-        className="mr-2 flex h-[20px] w-fit items-center gap-2 text-[13px] font-bold text-@blue-200 outline-none focus:ring-1 focus:ring-@blue-500 md:text-[14px] [&>span]:line-clamp-1"
+        className="mr-2 flex h-[20px] w-fit items-center gap-2 text-[13px] font-bold capitalize text-@blue-200 outline-none focus:ring-1 focus:ring-@blue-500 md:text-[14px] [&>span]:line-clamp-1"
         aria-label="Sort by"
       >
         <Select.Value />
@@ -42,7 +51,7 @@ export default function SortingMenu() {
                 value={option}
                 isLast={index === array.length - 1}
               >
-                {option}
+                {option.replace('-', ' ')}
               </SelectItem>
             ))}
           </Select.Viewport>
