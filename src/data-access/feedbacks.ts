@@ -50,7 +50,7 @@ export async function getFeedbacks(categoryParam: string, sortParam: string) {
   return allFeedbacks
 }
 
-export async function getFeedback(feedbackId: string) {
+export async function getFullFeedback(feedbackId: string) {
   const singleFeedback = await db.transaction(async (tx) => {
     const feedbackData = await tx.query.feedbacks.findFirst({
       where: eq(feedbacks.id, feedbackId),
@@ -79,6 +79,21 @@ export async function getFeedback(feedbackId: string) {
     return null
   })
 
+  return singleFeedback
+}
+
+export async function getFeedback(feedbackId: string) {
+  const singleFeedback = await db.query.feedbacks.findFirst({
+    where: eq(feedbacks.id, feedbackId),
+    columns: {
+      id: true,
+      title: true,
+      userId: true,
+      category: true,
+      status: true,
+      description: true,
+    },
+  })
   return singleFeedback
 }
 

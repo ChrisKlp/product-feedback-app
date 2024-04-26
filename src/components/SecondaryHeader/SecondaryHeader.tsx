@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import GoBackLink from '../GoBackLink/GoBackLink'
+import EditFeedbackButton from '../EditFeedbackButton/EditFeedbackButton'
 
 type Props = {
   withEditButton?: boolean
@@ -11,11 +12,9 @@ export default function SecondaryHeader({
   className,
 }: Props) {
   return (
-    <header className={cn('flex items-center justify-between', className)}>
+    <header className={cn('flex h-11 items-center justify-between', className)}>
       <GoBackLink theme="light" />
-      {withEditButton && (
-        <button className="btn btn-blue">Edit Feedback</button>
-      )}
+      {withEditButton && <EditFeedbackButton />}
     </header>
   )
 }

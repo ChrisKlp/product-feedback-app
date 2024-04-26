@@ -2,7 +2,8 @@ const routes = {
   home: '/',
   roadmap: 'roadmap',
   feedback: 'feedback',
-  newFeedback: 'feedback/new',
+  newFeedback: '/feedback/new',
+  editFeedback: '/feedback/edit',
 }
 
 export default routes

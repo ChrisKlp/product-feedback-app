@@ -5,5 +5,5 @@ export default function NewFeedbackLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <FeedbackFormLayout>{children}</FeedbackFormLayout>
+  return <FeedbackFormLayout variant="edit">{children}</FeedbackFormLayout>
 }

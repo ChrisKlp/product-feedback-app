@@ -1,13 +1,13 @@
 import CommentThread from '@/app/feedback/[id]/_components/comment-thread'
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
-import { getFeedback } from '@/data-access/feedbacks'
+import { getFullFeedback } from '@/data-access/feedbacks'
 import { notFound } from 'next/navigation'
 import AddCommentForm from './_components/add-comment-form'
 
 type Props = { params: { id: string } }
 
 export default async function SingleFeedbackPage({ params: { id } }: Props) {
-  const feedbackData = await getFeedback(id)
+  const feedbackData = await getFullFeedback(id)
 
   if (!feedbackData) {
     notFound()
