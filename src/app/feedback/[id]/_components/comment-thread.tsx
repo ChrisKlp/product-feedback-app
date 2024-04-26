@@ -1,4 +1,4 @@
-import Comment from './Comment'
+import Comment from '../../../../components/Comment/Comment'
 import { cn } from '@/lib/utils'
 import type { TComment } from '@/types'
 
@@ -7,7 +7,7 @@ type Props = {
   isSeparatorHidden?: boolean
 }
 
-export default function CommentWrapper({
+export default function CommentThread({
   data,
   isSeparatorHidden = false,
 }: Props) {
