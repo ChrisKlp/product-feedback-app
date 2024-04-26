@@ -1,5 +1,5 @@
 import EmptyImage from '@/assets/suggestions/illustration-empty.svg'
-import AddFeedbackButton from '@/components/AddFeedbackButton/AddFeedbackButton'
+import AddFeedbackButton from '@/components/actionButtons/AddFeedbackButton/AddFeedbackButton'
 
 export default function NoFeedback() {
   return (

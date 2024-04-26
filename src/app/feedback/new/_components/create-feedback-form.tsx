@@ -84,7 +84,7 @@ export default function CreateFeedbackForm({ className }: Props) {
         error={errors.description}
       >
         <Textarea
-          name="details"
+          name="description"
           register={register as unknown as UseFormRegister<FieldValues>}
         />
       </FieldWrapper>

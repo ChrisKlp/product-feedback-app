@@ -1,11 +1,11 @@
 import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
-import UpvoteButton from '@/components/UpvoteButton/UpvoteButton'
-import type { TFeedback, TFeedbackWithComments } from '@/types'
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
-import { statusColors } from 'tailwind.config'
+import type { TFeedback, TFeedbackWithComments } from '@/types'
 import Link from 'next/link'
+import { statusColors } from 'tailwind.config'
+import UpvoteButtonWithClerk from '../actionButtons/UpvoteButton/UpvoteButtonWithClerk'
 
 type Props = {
   data: TFeedback | TFeedbackWithComments
@@ -86,7 +86,7 @@ export default function FeedbackCard({
             </p>
             <CategoryTag name={data.category} />
           </div>
-          <UpvoteButton
+          <UpvoteButtonWithClerk
             data={data}
             withStatus={withStatus}
             className={cn('relative [grid-area:_upvote]')}

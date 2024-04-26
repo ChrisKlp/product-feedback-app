@@ -1,5 +1,5 @@
 import GoBackLink from '@/components/GoBackLink/GoBackLink'
-import AddFeedbackButton from '@/components/AddFeedbackButton/AddFeedbackButton'
+import AddFeedbackButton from '@/components/actionButtons/AddFeedbackButton/AddFeedbackButton'
 
 export default function RoadmapHeader() {
   return (

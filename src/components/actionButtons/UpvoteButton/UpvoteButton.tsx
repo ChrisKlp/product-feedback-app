@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 import ArrowUpIcon from '@/assets/shared/icon-arrow-up.svg'
 import type { TFeedback } from '@/types'
@@ -9,6 +7,7 @@ type Props = {
   isActive?: boolean
   withStatus?: boolean
   className?: string
+  onClick?: () => void
 }
 
 export default function UpvoteButton({
@@ -16,6 +15,7 @@ export default function UpvoteButton({
   isActive = false,
   withStatus = false,
   className,
+  onClick,
 }: Props) {
   return (
     <button
@@ -25,9 +25,7 @@ export default function UpvoteButton({
         className,
         isActive && 'pointer-events-none',
       )}
-      onClick={() => {
-        console.log(data.id)
-      }}
+      onClick={onClick}
     >
       <span
         className={cn(

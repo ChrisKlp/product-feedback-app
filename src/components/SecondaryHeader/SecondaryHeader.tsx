@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import GoBackLink from '../GoBackLink/GoBackLink'
-import EditFeedbackButton from '../EditFeedbackButton/EditFeedbackButton'
+import EditFeedbackButton from '../actionButtons/EditFeedbackButton/EditFeedbackButton'
 
 type Props = {
   withEditButton?: boolean

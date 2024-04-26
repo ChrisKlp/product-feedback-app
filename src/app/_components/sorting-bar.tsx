@@ -1,5 +1,5 @@
 import SuggestionsIcon from '@/assets/suggestions/icon-suggestions.svg'
-import AddFeedbackButton from '@/components/AddFeedbackButton/AddFeedbackButton'
+import AddFeedbackButton from '@/components/actionButtons/AddFeedbackButton/AddFeedbackButton'
 import SortingMenu from '@/components/SortingMenu/SortingMenu'
 import { cn } from '@/lib/utils'
 
