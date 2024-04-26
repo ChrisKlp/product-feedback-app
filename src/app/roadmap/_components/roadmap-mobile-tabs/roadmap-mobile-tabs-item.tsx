@@ -16,7 +16,7 @@ export default function RoadmapMobileTabsItem({
     <button className="group/tabs relative grid items-center" onClick={onClick}>
       <span
         className={cn(
-          'w-full text-center text-[13px] font-bold text-@blue-800 opacity-40 transition-opacity group-hover/tabs:opacity-100',
+          'w-full text-center text-xs font-bold text-@blue-800 opacity-40 transition-opacity group-hover/tabs:opacity-100',
           isActive && 'opacity-100',
         )}
       >{`${status.name} (${status.count})`}</span>

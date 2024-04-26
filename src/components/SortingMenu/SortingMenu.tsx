@@ -30,7 +30,7 @@ export default function SortingMenu() {
       onValueChange={(value) => handleValueChange(value)}
     >
       <Select.Trigger
-        className="mr-2 flex h-[20px] w-fit items-center gap-2 text-[13px] font-bold capitalize text-@blue-200 outline-none focus:ring-1 focus:ring-@blue-500 md:text-[14px] [&>span]:line-clamp-1"
+        className="mr-2 flex h-[20px] w-fit items-center gap-2 text-xs font-bold capitalize text-@blue-200 outline-none focus:ring-1 focus:ring-@blue-500 md:text-[14px] [&>span]:line-clamp-1"
         aria-label="Sort by"
       >
         <Select.Value />

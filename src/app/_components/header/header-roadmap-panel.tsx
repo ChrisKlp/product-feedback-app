@@ -20,7 +20,7 @@ export default function HeaderRoadmapPanel({ closeMenu, statusData }: Props) {
         <Link
           onClick={closeMenu}
           href={routes.roadmap}
-          className="underline; text-[13px] font-semibold text-@blue-500"
+          className="underline; text-xs font-semibold text-@blue-500"
         >
           View
         </Link>

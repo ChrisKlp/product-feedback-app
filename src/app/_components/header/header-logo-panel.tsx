@@ -41,7 +41,7 @@ export default function HeaderLogoPanel({ isMenuOpen, toggleMenu }: Props) {
               Frontend Mentor
             </h1>
           </Link>
-          <p className="text-[13px] font-medium opacity-75 md:text-[15px]">
+          <p className="text-xs font-medium opacity-75 md:text-[15px]">
             Feedback Board
           </p>
         </div>

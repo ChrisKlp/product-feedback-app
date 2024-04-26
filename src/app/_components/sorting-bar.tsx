@@ -20,7 +20,7 @@ export default function SortingBar({ className, counter }: Props) {
         <SuggestionsIcon />
         <span className="font-bold">{`${counter} Suggestions`}</span>
       </div>
-      <div className="flex flex-1 items-center gap-1 text-[13px] md:text-[14px]">
+      <div className="flex flex-1 items-center gap-1 text-xs md:text-[14px]">
         <span>Sort by : </span>
         <SortingMenu />
       </div>

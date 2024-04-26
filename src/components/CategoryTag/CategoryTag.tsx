@@ -17,7 +17,7 @@ export function CategoryTag({ name, className, isSelected = false }: Props) {
     >
       <span
         className={cn(
-          'text-[13px] font-semibold capitalize text-@blue-500 transition-colors',
+          'text-xs font-semibold capitalize text-@blue-500 transition-colors',
           isSelected && 'text-white',
           (name === 'ui' || name === 'ux') && 'uppercase',
         )}

@@ -99,7 +99,7 @@ export default function FeedbackCard({
             )}
           >
             <CommentsIcon className="text-@blue-300" />
-            <span className="text-[13px] font-bold text-@blue-800 lg:text-base">
+            <span className="text-xs font-bold text-@blue-800 lg:text-base">
               {data.commentsCount}
             </span>
           </Link>

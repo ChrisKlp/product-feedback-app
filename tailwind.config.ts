@@ -24,6 +24,9 @@ const config: Config = {
           md: '2.5rem',
         },
       },
+      fontSize: {
+        xs: '13px',
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },

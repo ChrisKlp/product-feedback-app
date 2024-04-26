@@ -22,7 +22,7 @@ export default function GoBackLink({ theme = 'dark' }: Props) {
       <ArrowIcon />
       <span
         className={cn(
-          'text-[13px] font-bold text-white lg:text-[14px]',
+          'text-xs font-bold text-white lg:text-[14px]',
           isLightTheme && 'text-@gray',
         )}
       >

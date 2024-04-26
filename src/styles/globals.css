@@ -11,7 +11,7 @@ body {
 }
 
 p {
-  @apply text-[13px] lg:text-base;
+  @apply text-xs lg:text-base;
 }
 
 @layer components {
@@ -28,7 +28,7 @@ p {
   }
 
   .h3 {
-    @apply text-[13px];
+    @apply text-xs;
   }
 
   .h4 {
