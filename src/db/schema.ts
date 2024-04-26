@@ -97,8 +97,8 @@ export type IFeedback = typeof feedbacks.$inferInsert
 export type SComment = typeof comments.$inferSelect
 export type IComment = typeof comments.$inferInsert
 
-const categoryArr = [...categoryEnum.enumValues] as const
+export const categoryArr = [...categoryEnum.enumValues] as const
 export type Category = (typeof categoryArr)[number]
 
-const statusArr = [...statusEnum.enumValues] as const
+export const statusArr = [...statusEnum.enumValues] as const
 export type Status = (typeof statusArr)[number]
