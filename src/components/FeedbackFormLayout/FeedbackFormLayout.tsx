@@ -16,7 +16,7 @@ export default function FeedbackFormLayout({
   variant = 'create',
 }: Props) {
   return (
-    <div className="c-container p-6 pb-20 md:px-10 md:pb-28 md:pt-14 lg:pt-[80px]">
+    <div className="c-container max-w-[540px] p-6 pb-20 md:px-10 md:pb-28 md:pt-14 lg:pt-[80px]">
       <SecondaryHeader withEditButton={false} className="mb-6" />
       <main>
         <section className="relative mt-10 rounded-[10px] bg-white p-6 pt-11 md:mt-14 md:p-10 md:pt-14">
