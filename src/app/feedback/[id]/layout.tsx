@@ -1,13 +1,54 @@
-import SecondaryHeader from '@/components/SecondaryHeader/SecondaryHeader'
+import GoBackLink from '@/components/GoBackLink/GoBackLink'
+import EditFeedbackButton from '@/components/actionButtons/EditFeedbackButton/EditFeedbackButton'
+import SignInButton from '@/components/actionButtons/SignInButton/SignInButton'
+import { getFullFeedback } from '@/data-access/feedbacks'
+import routes from '@/lib/routes'
+import { cn } from '@/lib/utils'
+import { UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { notFound } from 'next/navigation'
 
-export default function SingleFeedbackLayout({
+type Props = { params: { id: string }; children: React.ReactNode }
+
+export default async function SingleFeedbackLayout({
+  params,
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Props) {
+  const feedbackData = await getFullFeedback(params.id)
+  const { userId, sessionClaims } = auth()
+
+  if (!feedbackData) {
+    notFound()
+  }
+
+  const isAuthorized =
+    userId === feedbackData.userId || sessionClaims?.metadata.role === 'admin'
+
   return (
     <div className="c-container p-6 pb-20 md:px-10 md:pb-28 md:pt-14 lg:pt-[80px]">
-      <SecondaryHeader withEditButton={true} className="mb-6" />
+      <header
+        className={cn('mb-6 flex h-11 items-center justify-between gap-2')}
+      >
+        <GoBackLink theme="light" />
+        {userId ? (
+          <div className="grid grid-flow-col grid-cols-[auto_auto] items-center gap-4">
+            {isAuthorized ? <EditFeedbackButton /> : <div />}
+            <div className="relative grid h-[34px] w-[34px] place-items-center">
+              <div className="absolute h-full w-full rounded-full bg-@blue-300" />
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: 'w-[34px] h-auto',
+                  },
+                }}
+                afterSignOutUrl={`${routes.feedback}/${params.id}`}
+              />
+            </div>
+          </div>
+        ) : (
+          <SignInButton />
+        )}
+      </header>
       <main>{children}</main>
     </div>
   )

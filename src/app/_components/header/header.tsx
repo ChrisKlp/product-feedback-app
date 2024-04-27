@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react'
 import HeaderLogoPanel from './header-logo-panel'
 import { cn } from '@/lib/utils'
+import { SignedOut } from '@clerk/nextjs'
 import HeaderCategoriesPanel from './header-categories-panel'
 import HeaderRoadmapPanel from './header-roadmap-panel'
 import type { StatusData } from '@/types'
+import SignInButton from '@/components/actionButtons/SignInButton/SignInButton'
 
 type Props = {
   statusData: StatusData
@@ -49,6 +51,11 @@ export default function Header({ statusData }: Props) {
           isMenuOpen ? 'translate-x-0' : 'translate-x-[270px]',
         )}
       >
+        <div className="contents md:hidden">
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+        </div>
         <HeaderCategoriesPanel closeMenu={closeMenu} />
         <HeaderRoadmapPanel closeMenu={closeMenu} statusData={statusData} />
       </div>

@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation'
 
 type Props = {
   theme?: 'dark' | 'light'
+  pushRoute?: string
 }
 
-export default function GoBackLink({ theme = 'dark' }: Props) {
+export default function GoBackLink({ theme = 'dark', pushRoute }: Props) {
   const router = useRouter()
   const isLightTheme = theme === 'light'
   return (
@@ -17,12 +18,18 @@ export default function GoBackLink({ theme = 'dark' }: Props) {
         'flex items-center gap-4 text-@blue-300',
         isLightTheme && 'text-@blue-500',
       )}
-      onClick={() => router.back()}
+      onClick={() => {
+        if (pushRoute) {
+          router.push(pushRoute)
+        } else {
+          router.back()
+        }
+      }}
     >
       <ArrowIcon />
       <span
         className={cn(
-          'text-xs font-bold text-white lg:text-[14px]',
+          'line-clamp-1 text-xs font-bold text-white lg:text-[14px]',
           isLightTheme && 'text-@gray',
         )}
       >

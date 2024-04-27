@@ -1,5 +1,5 @@
-import SecondaryHeader from '@/components/SecondaryHeader/SecondaryHeader'
 import Image from 'next/image'
+import GoBackLink from '../GoBackLink/GoBackLink'
 
 type Props = {
   children: React.ReactNode
@@ -17,7 +17,9 @@ export default function FeedbackFormLayout({
 }: Props) {
   return (
     <div className="c-container max-w-[540px] p-6 pb-20 md:px-10 md:pb-28 md:pt-14 lg:pt-[80px]">
-      <SecondaryHeader withEditButton={false} className="mb-6" />
+      <header className="mb-6' flex h-11 items-center justify-between gap-2">
+        <GoBackLink theme="light" />
+      </header>
       <main>
         <section className="relative mt-10 rounded-[10px] bg-white p-6 pt-11 md:mt-14 md:p-10 md:pt-14">
           <Image

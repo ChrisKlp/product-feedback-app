@@ -2,8 +2,9 @@
 
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
-import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import SignInButton from '@/components/actionButtons/SignInButton/SignInButton'
 
 export default function AddFeedbackButton({
   className,
@@ -11,6 +12,7 @@ export default function AddFeedbackButton({
   className?: string
 }) {
   const router = useRouter()
+
   return (
     <>
       <SignedIn>
@@ -23,11 +25,7 @@ export default function AddFeedbackButton({
         </button>
       </SignedIn>
       <SignedOut>
-        <SignInButton mode="modal">
-          <button type="button" className={cn('btn', className)}>
-            Sign in
-          </button>
-        </SignInButton>
+        <SignInButton className={className} />
       </SignedOut>
     </>
   )

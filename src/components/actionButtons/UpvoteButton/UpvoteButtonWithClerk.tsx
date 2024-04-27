@@ -1,3 +1,5 @@
+'use client'
+
 import type { TFeedback } from '@/types'
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 import UpvoteButton from './UpvoteButton'
