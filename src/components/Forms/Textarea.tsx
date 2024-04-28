@@ -18,7 +18,7 @@ export default function Textarea({
   return (
     <textarea
       className={cn(
-        'focus-visible:ring-ring flex min-h-[80px] w-full rounded-md bg-@blue-100 p-4 text-xs text-@gray ring-offset-@blue-500 placeholder:text-@blue-700 placeholder:opacity-75 focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-[15px]',
+        'focus-visible:ring-ring flex min-h-[80px] w-full rounded-md bg-@blue-100 p-4 text-xs text-@gray placeholder:text-@blue-700 placeholder:opacity-75 focus:ring-@blue-500 focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-[15px]',
         className,
       )}
       {...register(name)}

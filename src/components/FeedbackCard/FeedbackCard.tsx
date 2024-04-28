@@ -2,13 +2,13 @@ import CommentsIcon from '@/assets/shared/icon-comments.svg'
 import { CategoryTag } from '@/components/CategoryTag/CategoryTag'
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
-import type { TFeedback, TFeedbackWithComments } from '@/types'
+import type { TFeedback } from '@/types'
 import Link from 'next/link'
 import { statusColors } from 'tailwind.config'
 import UpvoteButtonWithClerk from '../actionButtons/UpvoteButton/UpvoteButtonWithClerk'
 
 type Props = {
-  data: TFeedback | TFeedbackWithComments
+  data: TFeedback
   color?: string
   withStatus?: boolean
   withLinks?: boolean

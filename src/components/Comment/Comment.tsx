@@ -1,27 +1,41 @@
+'use client'
 import Image from 'next/image'
-import ReplayButton from './ReplayButton'
-import { getMockedUser } from '@/lib/utils'
 import { type TComment } from '@/types'
+import { SignedIn } from '@clerk/nextjs'
+import ReplyForm from './ReplyForm'
+import { useState } from 'react'
 
 type Props = {
   data: TComment
 }
 
 export default function Comment({ data }: Props) {
-  const user = getMockedUser(data.userId)
+  const [isReplyOpen, setIsReplyOpen] = useState(false)
   return (
     <article>
       <header className="mb-4 flex w-full items-center gap-4 md:gap-8">
         <div className="relative h-10 w-10 overflow-hidden rounded-full">
-          {user && <Image alt="avatar" sizes="40px" src={user.image} fill />}
+          {data.user ? (
+            <Image alt="avatar" sizes="40px" src={data.user.image} fill />
+          ) : (
+            <div className="size-full bg-@blue-300" />
+          )}
         </div>
         <div className="flex-1">
           <p className="font-bold text-@blue-800 md:text-[14px]">
-            {user?.name}
+            {data.user?.name ?? data.user?.username}
           </p>
-          <p className="md:text-[14px]">@{user?.username}</p>
+          <p className="md:text-[14px]">@{data.user?.username}</p>
         </div>
-        <ReplayButton />
+        <SignedIn>
+          <button
+            type="button"
+            className="text-xs font-semibold text-@blue-500"
+            onClick={() => setIsReplyOpen((prev) => !prev)}
+          >
+            {isReplyOpen ? 'Cancel' : 'Reply'}
+          </button>
+        </SignedIn>
       </header>
 
       <p className="md:pl-[72px] md:text-[15px]">
@@ -30,6 +44,7 @@ export default function Comment({ data }: Props) {
         )}
         {data.content}
       </p>
+      {isReplyOpen && <ReplyForm data={data} className="md:ml-[72px]" />}
     </article>
   )
 }

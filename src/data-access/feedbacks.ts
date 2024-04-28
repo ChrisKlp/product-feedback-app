@@ -8,7 +8,7 @@ import {
   type Status,
 } from '@/db/schema'
 import { SortOption } from '@/types'
-import { asc, count, desc, eq, isNull, ne } from 'drizzle-orm'
+import { asc, count, desc, eq, ne } from 'drizzle-orm'
 
 export async function getFeedbacks(categoryParam: string, sortParam: string) {
   const categories = categoryEnum.enumValues
@@ -18,7 +18,6 @@ export async function getFeedbacks(categoryParam: string, sortParam: string) {
     .select({
       id: feedbacks.id,
       title: feedbacks.title,
-      userId: feedbacks.userId,
       category: feedbacks.category,
       upvotes: feedbacks.upvotes,
       status: feedbacks.status,
@@ -50,36 +49,24 @@ export async function getFeedbacks(categoryParam: string, sortParam: string) {
   return allFeedbacks
 }
 
-export async function getFullFeedback(feedbackId: string) {
-  const singleFeedback = await db.transaction(async (tx) => {
-    const feedbackData = await tx.query.feedbacks.findFirst({
-      where: eq(feedbacks.id, feedbackId),
-      with: {
-        comments: {
-          with: {
-            children: true,
-          },
-          where: isNull(comments.parentId),
-        },
-      },
+export async function getFeedbackWithCounter(feedbackId: string) {
+  const feedbackData = await db
+    .select({
+      id: feedbacks.id,
+      title: feedbacks.title,
+      userId: feedbacks.userId,
+      category: feedbacks.category,
+      upvotes: feedbacks.upvotes,
+      status: feedbacks.status,
+      description: feedbacks.description,
+      commentsCount: count(comments.id),
     })
+    .from(feedbacks)
+    .where(eq(feedbacks.id, feedbackId))
+    .leftJoin(comments, eq(comments.feedbackId, feedbacks.id))
+    .groupBy(feedbacks.id)
 
-    const commentsCount = await tx
-      .select({ commentsCount: count(comments.id) })
-      .from(comments)
-      .where(eq(comments.feedbackId, feedbackId))
-
-    if (feedbackData) {
-      return {
-        ...feedbackData,
-        commentsCount: commentsCount[0]?.commentsCount ?? 0,
-      }
-    }
-
-    return null
-  })
-
-  return singleFeedback
+  return feedbackData[0]
 }
 
 export async function getFeedback(feedbackId: string) {

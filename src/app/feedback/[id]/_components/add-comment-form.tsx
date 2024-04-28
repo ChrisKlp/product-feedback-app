@@ -1,6 +1,8 @@
 'use client'
 import Textarea from '@/components/Forms/Textarea'
+import { type TFeedback } from '@/types'
 import { addCommentFormSchema, type AddCommentFormValues } from '@/types/form'
+import { useUser } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   useForm,
@@ -9,7 +11,12 @@ import {
   type UseFormRegister,
 } from 'react-hook-form'
 
-export default function AddCommentForm() {
+type Props = {
+  data: TFeedback
+}
+
+export default function AddCommentForm({ data }: Props) {
+  const { user, isSignedIn } = useUser()
   const {
     register,
     handleSubmit,
@@ -19,8 +26,16 @@ export default function AddCommentForm() {
     resolver: zodResolver(addCommentFormSchema),
   })
 
-  const onSubmit: SubmitHandler<AddCommentFormValues> = (data) => {
-    alert(JSON.stringify(data))
+  const onSubmit: SubmitHandler<AddCommentFormValues> = (formData) => {
+    if (isSignedIn) {
+      const submitData = {
+        content: formData.value,
+        feedbackId: data.id,
+        nickname: user.username,
+        userId: user.id,
+      }
+      alert(JSON.stringify(submitData))
+    }
   }
 
   return (

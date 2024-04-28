@@ -1,7 +1,7 @@
 import GoBackLink from '@/components/GoBackLink/GoBackLink'
 import EditFeedbackButton from '@/components/actionButtons/EditFeedbackButton/EditFeedbackButton'
 import SignInButton from '@/components/actionButtons/SignInButton/SignInButton'
-import { getFullFeedback } from '@/data-access/feedbacks'
+import { getFeedbackWithCounter } from '@/data-access/feedbacks'
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
 import { UserButton } from '@clerk/nextjs'
@@ -14,7 +14,7 @@ export default async function SingleFeedbackLayout({
   params,
   children,
 }: Props) {
-  const feedbackData = await getFullFeedback(params.id)
+  const feedbackData = await getFeedbackWithCounter(params.id)
   const { userId, sessionClaims } = auth()
 
   if (!feedbackData) {
@@ -31,8 +31,8 @@ export default async function SingleFeedbackLayout({
       >
         <GoBackLink theme="light" />
         {userId ? (
-          <div className="grid grid-flow-col grid-cols-[auto_auto] items-center gap-4">
-            {isAuthorized ? <EditFeedbackButton /> : <div />}
+          <div className="flex items-center gap-4">
+            {isAuthorized && <EditFeedbackButton />}
             <div className="relative grid h-[34px] w-[34px] place-items-center">
               <div className="absolute h-full w-full rounded-full bg-@blue-300" />
               <UserButton

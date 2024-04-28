@@ -1,4 +1,4 @@
-import type { SComment, SFeedback } from '@/db/schema'
+import type { SComment, SFeedback, SUser } from '@/db/schema'
 
 export enum SortOption {
   MOST_UPVOTES = 'most-upvotes',
@@ -11,12 +11,9 @@ export type TFeedback = SFeedback & {
   commentsCount: number
 }
 
-export type TFeedbackWithComments = TFeedback & {
-  comments?: SComment[] & { children?: SComment[] }
-}
-
 export type TComment = SComment & {
   children?: SComment[]
+  user?: SUser
 }
 
 export type StatusData = {
