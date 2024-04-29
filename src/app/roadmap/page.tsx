@@ -6,10 +6,10 @@ import {
   getFeedbacksWithRoadmapStatus,
 } from '@/data-access/feedbacks'
 import { getStatuses } from '@/lib/statuses'
-
-export const dynamic = 'force-dynamic'
+import { unstable_noStore as noStore } from 'next/cache'
 
 export default async function RoadmapPage() {
+  noStore()
   const feedbackData: TFeedback[] = await getFeedbacksWithRoadmapStatus()
   const feedbackStatusData: StatusData = await getFeedbackStatusData()
   const statusData = getStatuses(feedbackStatusData)

@@ -5,12 +5,14 @@ import { getFeedbacks } from '@/data-access/feedbacks'
 import { getUserVotes } from '@/data-access/votes'
 import { type SVotes, categoryEnum } from '@/db/schema'
 import { SortOption, type TFeedback } from '@/types'
+import { unstable_noStore as noStore } from 'next/cache'
 
 type Props = {
   searchParams: { category?: string; sort?: string }
 }
 
 export default async function FeedbackList({ searchParams }: Props) {
+  noStore()
   const category = searchParams.category ?? categoryEnum.enumValues[0]
   const sort = searchParams.sort ?? SortOption.MOST_UPVOTES
   const { userId } = auth()

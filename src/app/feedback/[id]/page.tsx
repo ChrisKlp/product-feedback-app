@@ -6,12 +6,12 @@ import { auth } from '@clerk/nextjs/server'
 import { notFound } from 'next/navigation'
 import AddCommentForm from './_components/add-comment-form'
 import CommentList from './_components/comment-list'
-
-export const dynamic = 'force-dynamic'
+import { unstable_noStore as noStore } from 'next/cache'
 
 type Props = { params: { id: string } }
 
 export default async function SingleFeedbackPage({ params: { id } }: Props) {
+  noStore()
   const feedbackData = await getFeedbackWithCounter(id)
   const { userId }: { userId: string | null } = auth()
 

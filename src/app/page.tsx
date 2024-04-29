@@ -3,14 +3,14 @@ import { getFeedbackStatusData } from '@/data-access/feedbacks'
 import { type StatusData } from '@/types'
 import Header from './_components/header/header'
 import SortingBar from './_components/sorting-bar'
-
-export const dynamic = 'force-dynamic'
+import { unstable_noStore as noStore } from 'next/cache'
 
 type Props = {
   searchParams: { category?: string; sort?: string }
 }
 
 export default async function Home({ searchParams }: Props) {
+  noStore()
   const statusData: StatusData = await getFeedbackStatusData()
 
   return (
