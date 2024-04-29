@@ -1,5 +1,13 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import {
+  useForm,
+  type FieldValues,
+  type SubmitHandler,
+  type UseFormRegister,
+} from 'react-hook-form'
 import FieldWrapper from '@/components/Forms/FieldWrapper'
 import FormSelect from '@/components/Forms/FormSelect'
 import SelectItem from '@/components/Forms/SelectItem'
@@ -16,13 +24,6 @@ import {
   type EditFeedbackFormValues,
   editFeedbackFormSchema,
 } from '@/types/form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  useForm,
-  type FieldValues,
-  type SubmitHandler,
-  type UseFormRegister,
-} from 'react-hook-form'
 
 type Props = {
   className?: string
@@ -34,6 +35,7 @@ const categories = categoryArr
   .reverse()
 
 export default function EditFeedbackForm({ className, initialValues }: Props) {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -116,9 +118,26 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
           register={register as unknown as UseFormRegister<FieldValues>}
         />
       </FieldWrapper>
-      <button type="submit" className="btn">
-        Submit
-      </button>
+      <div className="mt-4 grid w-full gap-4 md:flex md:flex-row-reverse">
+        <button type="submit" className="btn">
+          Save Changes
+        </button>
+        <button
+          type="button"
+          className="btn btn-darkBlue"
+          onClick={() => router.back()}
+        >
+          Cancel
+        </button>
+        <div className="hidden md:block md:flex-1" />
+        <button
+          type="button"
+          className="btn btn-red"
+          onClick={() => console.log('delete')}
+        >
+          Delete
+        </button>
+      </div>
     </form>
   )
 }

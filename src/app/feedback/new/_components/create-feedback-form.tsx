@@ -1,5 +1,13 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import {
+  type FieldValues,
+  type SubmitHandler,
+  type UseFormRegister,
+  useForm,
+} from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import FieldWrapper from '@/components/Forms/FieldWrapper'
 import FormSelect from '@/components/Forms/FormSelect'
 import SelectItem from '@/components/Forms/SelectItem'
@@ -11,13 +19,6 @@ import {
   createFeedbackFormSchema,
   type CreateFeedbackFormValues,
 } from '@/types/form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  type FieldValues,
-  type SubmitHandler,
-  type UseFormRegister,
-  useForm,
-} from 'react-hook-form'
 
 type Props = {
   className?: string
@@ -28,6 +29,7 @@ const categories = categoryArr
   .reverse()
 
 export default function CreateFeedbackForm({ className }: Props) {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -88,9 +90,18 @@ export default function CreateFeedbackForm({ className }: Props) {
           register={register as unknown as UseFormRegister<FieldValues>}
         />
       </FieldWrapper>
-      <button type="submit" className="btn">
-        Submit
-      </button>
+      <div className="mt-4 grid w-full gap-4 md:flex md:flex-row-reverse">
+        <button type="submit" className="btn">
+          Add Feedback
+        </button>
+        <button
+          type="button"
+          className="btn btn-darkBlue"
+          onClick={() => router.back()}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   )
 }

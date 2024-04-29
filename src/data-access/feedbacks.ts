@@ -19,6 +19,7 @@ export async function getFeedbacks(categoryParam: string, sortParam: string) {
       id: feedbacks.id,
       title: feedbacks.title,
       category: feedbacks.category,
+      userId: feedbacks.userId,
       upvotes: feedbacks.upvotes,
       status: feedbacks.status,
       description: feedbacks.description,

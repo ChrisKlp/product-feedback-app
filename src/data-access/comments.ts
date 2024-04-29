@@ -7,7 +7,11 @@ export async function getComments(feedbackId: string) {
     where: and(eq(comments.feedbackId, feedbackId), isNull(comments.parentId)),
     with: {
       user: true,
-      children: true,
+      children: {
+        with: {
+          user: true,
+        },
+      },
     },
     orderBy: desc(comments.createdAt),
   })

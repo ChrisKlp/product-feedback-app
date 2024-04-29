@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import ArrowUpIcon from '@/assets/shared/icon-arrow-up.svg'
 import type { TFeedback } from '@/types'
 
-type Props = {
+export type UpvoteButtonProps = {
   data: TFeedback
   isActive?: boolean
   withStatus?: boolean
@@ -16,7 +16,7 @@ export default function UpvoteButton({
   withStatus = false,
   className,
   onClick,
-}: Props) {
+}: UpvoteButtonProps) {
   return (
     <button
       type="button"

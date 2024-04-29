@@ -1,18 +1,9 @@
 'use client'
 
-import type { TFeedback } from '@/types'
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
-import UpvoteButton from './UpvoteButton'
+import UpvoteButton, { type UpvoteButtonProps } from './UpvoteButton'
 
-type Props = {
-  data: TFeedback
-  isActive?: boolean
-  withStatus?: boolean
-  className?: string
-  onClick?: () => void
-}
-
-export default function UpvoteButtonWithClerk(props: Props) {
+export default function UpvoteButtonWithClerk(props: UpvoteButtonProps) {
   return (
     <>
       <SignedIn>

@@ -16,7 +16,7 @@ export default function FeedbackFormLayout({
   variant = 'create',
 }: Props) {
   return (
-    <div className="c-container max-w-[540px] p-6 pb-20 md:px-10 md:pb-28 md:pt-14 lg:pt-[80px]">
+    <div className="c-container max-w-[588px] p-6 pb-20 md:pb-28 md:pt-14 lg:pt-[80px]">
       <header className="mb-6' flex h-11 items-center justify-between gap-2">
         <GoBackLink theme="light" />
       </header>

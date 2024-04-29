@@ -28,13 +28,15 @@ export default function ReplyForm({ data, className }: Props) {
   })
 
   const onSubmit: SubmitHandler<AddCommentFormValues> = (formData) => {
-    const submitData = {
-      content: formData.value,
-      replyingTo: data.replyingTo,
-      parentId: data.id,
-      feedbackId: data.feedbackId,
+    if (data.user?.username) {
+      const submitData = {
+        content: formData.value,
+        replyingTo: data.user.username,
+        parentId: data.id,
+        feedbackId: data.feedbackId,
+      }
+      alert(JSON.stringify(submitData))
     }
-    alert(JSON.stringify(submitData))
   }
   return (
     <form
