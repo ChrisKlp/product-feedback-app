@@ -4,7 +4,7 @@ import type { TFeedback } from '@/types'
 
 export type UpvoteButtonProps = {
   data: TFeedback
-  isActive?: boolean
+  isVoted?: boolean
   withStatus?: boolean
   className?: string
   onClick?: () => void
@@ -12,7 +12,7 @@ export type UpvoteButtonProps = {
 
 export default function UpvoteButton({
   data,
-  isActive = false,
+  isVoted = false,
   withStatus = false,
   className,
   onClick,
@@ -23,7 +23,7 @@ export default function UpvoteButton({
       className={cn(
         'group/upvote',
         className,
-        isActive && 'pointer-events-none',
+        isVoted && 'pointer-events-none',
       )}
       onClick={onClick}
     >
@@ -36,7 +36,7 @@ export default function UpvoteButton({
             ? 'md:h-[53px] md:w-10 md:items-start md:justify-center md:p-0 md:pt-[14px]'
             : 'lg:h-10 lg:w-[69px]',
           // active styles
-          isActive && 'bg-@blue-500',
+          isVoted && 'bg-@blue-500',
         )}
       >
         <span
@@ -50,13 +50,13 @@ export default function UpvoteButton({
           <ArrowUpIcon
             className={cn(
               'text-@blue-500 transition-colors',
-              isActive && 'text-white',
+              isVoted && 'text-white',
             )}
           />
           <span
             className={cn(
               'text-xs font-semibold capitalize text-@blue-800 transition-colors',
-              isActive && 'text-white',
+              isVoted && 'text-white',
             )}
           >
             {data.upvotes}

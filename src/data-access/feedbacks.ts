@@ -8,7 +8,7 @@ import {
   type Status,
 } from '@/db/schema'
 import { SortOption } from '@/types'
-import { asc, count, desc, eq, ne } from 'drizzle-orm'
+import { asc, count, desc, eq, ne, sql } from 'drizzle-orm'
 
 export async function getFeedbacks(categoryParam: string, sortParam: string) {
   const categories = categoryEnum.enumValues
@@ -97,6 +97,16 @@ export async function updateFeedback(
     .returning()
 
   return updatedFeedback[0]
+}
+
+export async function upvoteFeedback(feedbackId: string) {
+  const updatedFeedback = await db
+    .update(feedbacks)
+    .set({ upvotes: sql`${feedbacks.upvotes} + 1` })
+    .where(eq(feedbacks.id, feedbackId))
+    .returning()
+
+  return updatedFeedback
 }
 
 export async function deleteFeedback(feedbackId: string) {

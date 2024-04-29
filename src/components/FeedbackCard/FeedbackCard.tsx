@@ -6,9 +6,11 @@ import type { TFeedback } from '@/types'
 import Link from 'next/link'
 import { statusColors } from 'tailwind.config'
 import UpvoteButtonWithClerk from '../actionButtons/UpvoteButton/UpvoteButtonWithClerk'
+import type { SVotes } from '@/db/schema'
 
 type Props = {
   data: TFeedback
+  userVotes?: SVotes[]
   color?: string
   withStatus?: boolean
   withLinks?: boolean
@@ -17,12 +19,14 @@ type Props = {
 
 export default function FeedbackCard({
   data,
+  userVotes,
   color = statusColors.sPurple,
   withStatus = false,
   withLinks = true,
   className,
 }: Props) {
   const href = `${routes.feedback}/${data.id}`
+  const isVoted = userVotes?.some((v) => v.feedbackId === data.id)
 
   return (
     <article className={className}>
@@ -90,6 +94,7 @@ export default function FeedbackCard({
             data={data}
             withStatus={withStatus}
             className={cn('relative [grid-area:_upvote]')}
+            isVoted={isVoted}
           />
           <Link
             href={href}

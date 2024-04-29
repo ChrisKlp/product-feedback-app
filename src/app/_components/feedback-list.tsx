@@ -1,7 +1,9 @@
+import { auth } from '@clerk/nextjs/server'
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import NoFeedback from '@/components/NoFeedback/NoFeedback'
 import { getFeedbacks } from '@/data-access/feedbacks'
-import { categoryEnum } from '@/db/schema'
+import { getUserVotes } from '@/data-access/votes'
+import { type SVotes, categoryEnum } from '@/db/schema'
 import { SortOption, type TFeedback } from '@/types'
 
 type Props = {
@@ -11,8 +13,10 @@ type Props = {
 export default async function FeedbackList({ searchParams }: Props) {
   const category = searchParams.category ?? categoryEnum.enumValues[0]
   const sort = searchParams.sort ?? SortOption.MOST_UPVOTES
+  const { userId } = auth()
 
   const feedbackData: TFeedback[] = await getFeedbacks(category, sort)
+  const userVotes: SVotes[] = await getUserVotes(userId)
 
   return (
     <>
@@ -20,7 +24,11 @@ export default async function FeedbackList({ searchParams }: Props) {
         {feedbackData.length ? (
           <>
             {feedbackData.map((feedback) => (
-              <FeedbackCard key={feedback.id} data={feedback} />
+              <FeedbackCard
+                key={feedback.id}
+                data={feedback}
+                userVotes={userVotes}
+              />
             ))}
           </>
         ) : (
