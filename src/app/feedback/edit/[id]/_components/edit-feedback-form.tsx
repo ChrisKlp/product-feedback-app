@@ -16,6 +16,7 @@ import Textarea from '@/components/Forms/Textarea'
 import {
   categoryArr,
   statusArr,
+  type Status,
   type Category,
   type SFeedback,
 } from '@/db/schema'
@@ -91,6 +92,7 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
       <FieldWrapper
         label="Category"
         headline="Choose a category for your feedback"
+        error={errors.category}
       >
         <FormSelect
           defaultValue={initialValues.category}
@@ -109,10 +111,14 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
           ))}
         </FormSelect>
       </FieldWrapper>
-      <FieldWrapper label="Update Status" headline="Change feature state">
+      <FieldWrapper
+        label="Update Status"
+        headline="Change feature state"
+        error={errors.status}
+      >
         <FormSelect
           defaultValue={initialValues.status}
-          onValueChange={(value) => setValue('category', value as Category)}
+          onValueChange={(value) => setValue('status', value as Status)}
         >
           {statusArr.map((status, index, array) => (
             <SelectItem
