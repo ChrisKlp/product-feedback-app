@@ -1,8 +1,8 @@
 'use client'
+
 import Textarea from '@/components/Forms/Textarea'
 import { type TFeedback } from '@/types'
 import { addCommentFormSchema, type AddCommentFormValues } from '@/types/form'
-import { useUser } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   useForm,
@@ -10,13 +10,16 @@ import {
   type SubmitHandler,
   type UseFormRegister,
 } from 'react-hook-form'
+import { createCommentAction } from '../actions'
+import { toast } from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   data: TFeedback
 }
 
 export default function AddCommentForm({ data }: Props) {
-  const { user, isSignedIn } = useUser()
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -26,15 +29,15 @@ export default function AddCommentForm({ data }: Props) {
     resolver: zodResolver(addCommentFormSchema),
   })
 
-  const onSubmit: SubmitHandler<AddCommentFormValues> = (formData) => {
-    if (isSignedIn) {
-      const submitData = {
-        content: formData.value,
-        feedbackId: data.id,
-        nickname: user.username,
-        userId: user.id,
-      }
-      alert(JSON.stringify(submitData))
+  const onSubmit: SubmitHandler<AddCommentFormValues> = async (formData) => {
+    const comment = await createCommentAction({
+      feedbackId: data.id,
+      content: formData.value,
+    })
+
+    if (comment) {
+      toast.success('Comment created successfully')
+      router.refresh()
     }
   }
 

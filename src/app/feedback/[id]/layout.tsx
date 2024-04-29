@@ -29,7 +29,7 @@ export default async function SingleFeedbackLayout({
       <header
         className={cn('mb-6 flex h-11 items-center justify-between gap-2')}
       >
-        <GoBackLink theme="light" />
+        <GoBackLink theme="light" pushRoute={routes.home} />
         {userId ? (
           <div className="flex items-center gap-4">
             {isAuthorized && <EditFeedbackButton />}

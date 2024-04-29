@@ -8,6 +8,9 @@ const nextConfig = {
 
     return config
   },
+  images: {
+    domains: ['images.clerk.com', 'img.clerk.com'],
+  },
 }
 
 export default nextConfig
