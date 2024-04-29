@@ -4,6 +4,8 @@ import { type StatusData } from '@/types'
 import Header from './_components/header/header'
 import SortingBar from './_components/sorting-bar'
 
+export const dynamic = 'force-dynamic'
+
 type Props = {
   searchParams: { category?: string; sort?: string }
 }

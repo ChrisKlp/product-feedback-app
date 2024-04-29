@@ -7,6 +7,8 @@ import { notFound } from 'next/navigation'
 import AddCommentForm from './_components/add-comment-form'
 import CommentList from './_components/comment-list'
 
+export const dynamic = 'force-dynamic'
+
 type Props = { params: { id: string } }
 
 export default async function SingleFeedbackPage({ params: { id } }: Props) {
