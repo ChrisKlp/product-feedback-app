@@ -25,6 +25,7 @@ export default function AddCommentForm({ data }: Props) {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<AddCommentFormValues>({
     resolver: zodResolver(addCommentFormSchema),
   })
@@ -38,6 +39,7 @@ export default function AddCommentForm({ data }: Props) {
     if (comment) {
       toast.success('Comment created successfully')
       router.refresh()
+      reset()
     }
   }
 

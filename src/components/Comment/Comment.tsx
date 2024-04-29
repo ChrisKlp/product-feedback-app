@@ -12,7 +12,7 @@ type Props = {
 export default function Comment({ data }: Props) {
   const [isReplyOpen, setIsReplyOpen] = useState(false)
   return (
-    <article>
+    <article className="w-full">
       <header className="mb-4 flex w-full items-center gap-4 md:gap-8">
         <div className="relative h-10 w-10 overflow-hidden rounded-full">
           {data.user ? (
@@ -44,7 +44,13 @@ export default function Comment({ data }: Props) {
         )}
         {data.content}
       </p>
-      {isReplyOpen && <ReplyForm data={data} className="md:ml-[72px]" />}
+      {isReplyOpen && (
+        <ReplyForm
+          data={data}
+          className="md:ml-[72px]"
+          hideForm={() => setIsReplyOpen(false)}
+        />
+      )}
     </article>
   )
 }
