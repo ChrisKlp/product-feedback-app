@@ -1,7 +1,7 @@
 const routes = {
   home: '/',
-  roadmap: 'roadmap',
-  feedback: 'feedback',
+  roadmap: '/roadmap',
+  feedback: '/feedback',
   newFeedback: '/feedback/new',
   editFeedback: '/feedback/edit',
 }

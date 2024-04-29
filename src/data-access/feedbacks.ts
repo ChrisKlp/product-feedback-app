@@ -73,22 +73,14 @@ export async function getFeedbackWithCounter(feedbackId: string) {
 export async function getFeedback(feedbackId: string) {
   const singleFeedback = await db.query.feedbacks.findFirst({
     where: eq(feedbacks.id, feedbackId),
-    columns: {
-      id: true,
-      title: true,
-      userId: true,
-      category: true,
-      status: true,
-      description: true,
-    },
   })
   return singleFeedback
 }
 
-export async function createFeedback(feedbackData: IFeedback, userId: string) {
+export async function createFeedback(feedbackData: IFeedback) {
   const insertedFeedbacks = await db
     .insert(feedbacks)
-    .values({ ...feedbackData, userId })
+    .values(feedbackData)
     .returning()
 
   return insertedFeedbacks[0]
@@ -105,6 +97,15 @@ export async function updateFeedback(
     .returning()
 
   return updatedFeedback[0]
+}
+
+export async function deleteFeedback(feedbackId: string) {
+  const deletedFeedback = await db
+    .delete(feedbacks)
+    .where(eq(feedbacks.id, feedbackId))
+    .returning({ id: feedbacks.id })
+
+  return deletedFeedback[0]
 }
 
 export async function getFeedbackStatusData() {

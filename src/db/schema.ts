@@ -124,7 +124,7 @@ export const votesRelations = relations(votes, ({ one }) => ({
 }))
 
 export type SUser = typeof users.$inferSelect
-export type IUser = typeof feedbacks.$inferInsert
+export type IUser = typeof users.$inferInsert
 export type SFeedback = typeof feedbacks.$inferSelect
 export type IFeedback = typeof feedbacks.$inferInsert
 export type SComment = typeof comments.$inferSelect

@@ -19,6 +19,9 @@ import {
   createFeedbackFormSchema,
   type CreateFeedbackFormValues,
 } from '@/types/form'
+import { createFeedbackAction } from '../actions'
+import routes from '@/lib/routes'
+import { toast } from 'react-hot-toast'
 
 type Props = {
   className?: string
@@ -39,8 +42,13 @@ export default function CreateFeedbackForm({ className }: Props) {
     resolver: zodResolver(createFeedbackFormSchema),
   })
 
-  const onSubmit: SubmitHandler<CreateFeedbackFormValues> = (data) => {
-    alert(JSON.stringify(data))
+  const onSubmit: SubmitHandler<CreateFeedbackFormValues> = async (data) => {
+    const feedback = await createFeedbackAction(data)
+
+    if (feedback) {
+      toast.success('Feedback created successfully')
+      router.push(`${routes.feedback}/${feedback.id}`)
+    }
   }
 
   return (

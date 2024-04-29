@@ -24,10 +24,13 @@ import {
   type EditFeedbackFormValues,
   editFeedbackFormSchema,
 } from '@/types/form'
+import { deleteFeedbackAction, updateFeedbackAction } from '../actions'
+import { toast } from 'react-hot-toast'
+import routes from '@/lib/routes'
 
 type Props = {
   className?: string
-  initialValues: Omit<SFeedback, 'upvotes'>
+  initialValues: SFeedback
 }
 
 const categories = categoryArr
@@ -51,8 +54,22 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
     },
   })
 
-  const onSubmit: SubmitHandler<EditFeedbackFormValues> = (data) => {
-    alert(JSON.stringify(data))
+  const onSubmit: SubmitHandler<EditFeedbackFormValues> = async (data) => {
+    const feedback = await updateFeedbackAction(initialValues.id, data)
+
+    if (feedback) {
+      toast.success('Feedback updated successfully')
+      router.push(`${routes.feedback}/${feedback.id}`)
+    }
+  }
+
+  const onDelete = async () => {
+    const feedback = await deleteFeedbackAction(initialValues.id)
+
+    if (feedback) {
+      toast.success('Feedback deleted successfully')
+      router.push(routes.home)
+    }
   }
 
   return (
@@ -130,11 +147,7 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
           Cancel
         </button>
         <div className="hidden md:block md:flex-1" />
-        <button
-          type="button"
-          className="btn btn-red"
-          onClick={() => console.log('delete')}
-        >
+        <button type="button" className="btn btn-red" onClick={onDelete}>
           Delete
         </button>
       </div>
