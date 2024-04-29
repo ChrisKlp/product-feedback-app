@@ -7,6 +7,8 @@ import {
 } from '@/data-access/feedbacks'
 import { getStatuses } from '@/lib/statuses'
 
+export const dynamic = 'force-dynamic'
+
 export default async function RoadmapPage() {
   const feedbackData: TFeedback[] = await getFeedbacksWithRoadmapStatus()
   const feedbackStatusData: StatusData = await getFeedbackStatusData()
