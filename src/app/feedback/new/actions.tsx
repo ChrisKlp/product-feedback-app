@@ -3,7 +3,6 @@
 import { getUserAction } from '@/app/actions'
 import { createFeedback } from '@/data-access/feedbacks'
 import type { IFeedback } from '@/db/schema'
-import routes from '@/lib/routes'
 import { currentUser } from '@clerk/nextjs/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
 
@@ -28,7 +27,7 @@ export async function createFeedbackAction(
   })
 
   revalidateTag('feedbacks')
-  revalidatePath(routes.home)
+  revalidatePath('/')
 
   return feedback
 }

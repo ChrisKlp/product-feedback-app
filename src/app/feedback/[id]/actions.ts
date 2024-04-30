@@ -28,7 +28,7 @@ export async function createCommentAction(
   })
 
   revalidateTag('comments')
-  revalidatePath(routes.home)
+  revalidatePath('/')
   revalidatePath(`${routes.feedback}/${commentData.feedbackId}`)
 
   return comment
