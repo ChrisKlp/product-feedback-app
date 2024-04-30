@@ -25,6 +25,7 @@ export async function updateFeedbackAction(
   })
 
   revalidatePath(routes.home)
+  revalidatePath(`${routes.feedback}/${feedbackId}`)
 
   return feedback
 }
