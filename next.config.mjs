@@ -9,7 +9,12 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ['images.clerk.com', 'img.clerk.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+      },
+    ],
   },
   logging: {
     fetches: {
