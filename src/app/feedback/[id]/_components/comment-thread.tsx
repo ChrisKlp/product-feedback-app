@@ -17,9 +17,9 @@ export default function CommentThread({
       <Comment data={data} />
       {!isSeparatorHidden && !hasChildren && <Separator />}
       {hasChildren && (
-        <div className="mt-6 flex justify-start gap-6 md:block">
-          <div className="bottom-1/3 w-[1px] bg-@blue-700 opacity-20 md:absolute md:left-[19px] md:top-[63px]" />
-          <div className="grid w-full gap-6 md:ml-11">
+        <div className="relative mt-6 md:[position:unset]">
+          <div className="absolute bottom-1/3 left-0 top-0 w-[1px] bg-@blue-700 opacity-20 md:left-[19px] md:top-[63px]" />
+          <div className="ml-6 grid gap-6 md:ml-11">
             {data.children?.map((child) => (
               <Comment key={child.id} data={child} />
             ))}
