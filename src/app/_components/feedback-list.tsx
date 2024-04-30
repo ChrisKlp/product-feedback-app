@@ -3,18 +3,18 @@ import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
 import NoFeedback from '@/components/NoFeedback/NoFeedback'
 import { getFeedbacks } from '@/data-access/feedbacks'
 import { getUserVotes } from '@/data-access/votes'
-import { type SVotes, categoryEnum } from '@/db/schema'
-import { SortOption, type TFeedback } from '@/types'
+import { type SVotes } from '@/db/schema'
+import { type TFeedback } from '@/types'
 import { unstable_noStore as noStore } from 'next/cache'
 
 type Props = {
   searchParams: { category?: string; sort?: string }
 }
 
-export default async function FeedbackList({ searchParams }: Props) {
+export default async function FeedbackList({
+  searchParams: { category, sort },
+}: Props) {
   noStore()
-  const category = searchParams.category ?? categoryEnum.enumValues[0]
-  const sort = searchParams.sort ?? SortOption.MOST_UPVOTES
   const { userId } = auth()
 
   const feedbackData: TFeedback[] = await getFeedbacks(category, sort)

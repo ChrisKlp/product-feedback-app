@@ -5,7 +5,7 @@ import { createComment } from '@/data-access/comments'
 import type { IComment } from '@/db/schema'
 import routes from '@/lib/routes'
 import { currentUser } from '@clerk/nextjs/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 
 export async function createCommentAction(
   commentData: Omit<IComment, 'userId'>,
@@ -27,7 +27,9 @@ export async function createCommentAction(
     userId: userData.id,
   })
 
+  revalidateTag('comments')
   revalidatePath(routes.home)
+  revalidatePath(`${routes.feedback}/${commentData.feedbackId}`)
 
   return comment
 }

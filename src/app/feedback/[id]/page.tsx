@@ -1,5 +1,5 @@
 import FeedbackCard from '@/components/FeedbackCard/FeedbackCard'
-import { getFeedbackWithCounter } from '@/data-access/feedbacks'
+import { getFeedback } from '@/data-access/feedbacks'
 import routes from '@/lib/routes'
 import { SignInButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
@@ -12,7 +12,7 @@ type Props = { params: { id: string } }
 
 export default async function SingleFeedbackPage({ params: { id } }: Props) {
   noStore()
-  const feedbackData = await getFeedbackWithCounter(id)
+  const feedbackData = await getFeedback(id)
   const { userId }: { userId: string | null } = auth()
 
   if (!feedbackData) {

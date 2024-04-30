@@ -5,7 +5,7 @@ import { createFeedback } from '@/data-access/feedbacks'
 import type { IFeedback } from '@/db/schema'
 import routes from '@/lib/routes'
 import { currentUser } from '@clerk/nextjs/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 
 export async function createFeedbackAction(
   feedbackData: Omit<IFeedback, 'userId'>,
@@ -27,6 +27,7 @@ export async function createFeedbackAction(
     userId: userData.id,
   })
 
+  revalidateTag('feedbacks')
   revalidatePath(routes.home)
 
   return feedback

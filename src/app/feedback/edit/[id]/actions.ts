@@ -4,7 +4,7 @@ import { deleteFeedback, updateFeedback } from '@/data-access/feedbacks'
 import type { IFeedback } from '@/db/schema'
 import routes from '@/lib/routes'
 import { currentUser } from '@clerk/nextjs/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 
 export async function updateFeedbackAction(
   feedbackId: string,
@@ -24,6 +24,7 @@ export async function updateFeedbackAction(
     userId: user.id,
   })
 
+  revalidateTag('feedbacks')
   revalidatePath(routes.home)
   revalidatePath(`${routes.feedback}/${feedbackId}`)
 
@@ -33,6 +34,7 @@ export async function updateFeedbackAction(
 export async function deleteFeedbackAction(feedbackId: string) {
   const feedback = await deleteFeedback(feedbackId)
 
+  revalidateTag('feedbacks')
   revalidatePath(routes.home)
 
   return feedback

@@ -1,7 +1,7 @@
 import GoBackLink from '@/components/GoBackLink/GoBackLink'
 import EditFeedbackButton from '@/components/actionButtons/EditFeedbackButton/EditFeedbackButton'
 import SignInButton from '@/components/actionButtons/SignInButton/SignInButton'
-import { getFeedbackWithCounter } from '@/data-access/feedbacks'
+import { getFeedback } from '@/data-access/feedbacks'
 import routes from '@/lib/routes'
 import { cn } from '@/lib/utils'
 import { UserButton } from '@clerk/nextjs'
@@ -14,7 +14,7 @@ export default async function SingleFeedbackLayout({
   params,
   children,
 }: Props) {
-  const feedbackData = await getFeedbackWithCounter(params.id)
+  const feedbackData = await getFeedback(params.id)
   const { userId, sessionClaims } = auth()
 
   if (!feedbackData) {

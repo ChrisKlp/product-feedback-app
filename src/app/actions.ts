@@ -5,7 +5,7 @@ import { createUser, getUser } from '@/data-access/users'
 import { createVote, getUserVote } from '@/data-access/votes'
 import routes from '@/lib/routes'
 import { currentUser, type User } from '@clerk/nextjs/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 
 export async function getUserAction(user: User) {
   let userData = await getUser(user.id)
@@ -46,6 +46,7 @@ export async function giveVoteAction(feedbackId: string) {
   const vote = await createVote(feedbackId, userData.id)
   await upvoteFeedback(feedbackId)
 
+  revalidateTag('votes')
   revalidatePath(routes.home)
 
   return vote
