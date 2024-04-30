@@ -60,6 +60,7 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
 
     if (feedback) {
       toast.success('Feedback updated successfully')
+      router.prefetch(`${routes.feedback}/${feedback.id}`)
       router.push(`${routes.feedback}/${feedback.id}`)
     }
   }
@@ -69,6 +70,7 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
 
     if (feedback) {
       toast.success('Feedback deleted successfully')
+      router.prefetch(routes.home)
       router.push(routes.home)
     }
   }

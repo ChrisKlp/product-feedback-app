@@ -26,7 +26,7 @@ export async function updateFeedbackAction(
 
   revalidateTag('feedbacks')
   revalidatePath('/')
-  revalidatePath(`${routes.feedback}/[id]`, 'layout')
+  revalidatePath(`${routes.feedback}/${feedbackId}`, 'layout')
 
   return feedback
 }
