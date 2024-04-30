@@ -56,13 +56,9 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
   })
 
   const onSubmit: SubmitHandler<EditFeedbackFormValues> = async (data) => {
-    const feedback = await updateFeedbackAction(initialValues.id, data)
+    await updateFeedbackAction(initialValues.id, data)
 
-    if (feedback) {
-      toast.success('Feedback updated successfully')
-      router.prefetch(`${routes.feedback}/${feedback.id}`)
-      router.push(`${routes.feedback}/${feedback.id}`)
-    }
+    toast.success('Feedback updated successfully')
   }
 
   const onDelete = async () => {

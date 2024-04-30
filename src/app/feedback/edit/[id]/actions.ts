@@ -5,6 +5,7 @@ import type { IFeedback } from '@/db/schema'
 import routes from '@/lib/routes'
 import { currentUser } from '@clerk/nextjs/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export async function updateFeedbackAction(
   feedbackId: string,
@@ -16,7 +17,7 @@ export async function updateFeedbackAction(
     throw new Error('you must be logged in to update this feedback')
   }
 
-  const feedback = await updateFeedback(feedbackId, {
+  await updateFeedback(feedbackId, {
     title: feedbackData.title,
     description: feedbackData.description,
     status: feedbackData.status,
@@ -25,10 +26,9 @@ export async function updateFeedbackAction(
   })
 
   revalidateTag('feedbacks')
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
   revalidatePath(`${routes.feedback}/${feedbackId}`, 'layout')
-
-  return feedback
+  redirect(`${routes.feedback}/${feedbackId}`)
 }
 
 export async function deleteFeedbackAction(feedbackId: string) {
