@@ -27,6 +27,7 @@ import {
 } from '@/types/form'
 import { deleteFeedbackAction, updateFeedbackAction } from '../actions'
 import { toast } from 'react-hot-toast'
+import { useTransition } from 'react'
 
 type Props = {
   className?: string
@@ -38,6 +39,7 @@ const categories = categoryArr
   .reverse()
 
 export default function EditFeedbackForm({ className, initialValues }: Props) {
+  const [isPending, startTransition] = useTransition()
   const router = useRouter()
   const {
     register,
@@ -54,14 +56,18 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
     },
   })
 
-  const onSubmit: SubmitHandler<EditFeedbackFormValues> = async (data) => {
-    await updateFeedbackAction(initialValues.id, data)
-    toast.success('Feedback updated successfully')
+  const onSubmit: SubmitHandler<EditFeedbackFormValues> = (data) => {
+    startTransition(async () => {
+      await updateFeedbackAction(initialValues.id, data)
+      toast.success('Feedback updated successfully')
+    })
   }
 
-  const onDelete = async () => {
-    await deleteFeedbackAction(initialValues.id)
-    toast.success('Feedback deleted successfully')
+  const onDelete = () => {
+    startTransition(async () => {
+      await deleteFeedbackAction(initialValues.id)
+      toast.success('Feedback deleted successfully')
+    })
   }
 
   return (
@@ -133,18 +139,24 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
         />
       </FieldWrapper>
       <div className="mt-4 grid w-full gap-4 md:flex md:flex-row-reverse">
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" disabled={isPending}>
           Save Changes
         </button>
         <button
           type="button"
           className="btn btn-darkBlue"
           onClick={() => router.back()}
+          disabled={isPending}
         >
           Cancel
         </button>
         <div className="hidden md:block md:flex-1" />
-        <button type="button" className="btn btn-red" onClick={onDelete}>
+        <button
+          type="button"
+          className="btn btn-red"
+          onClick={onDelete}
+          disabled={isPending}
+        >
           Delete
         </button>
       </div>

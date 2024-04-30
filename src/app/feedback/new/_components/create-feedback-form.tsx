@@ -20,8 +20,8 @@ import {
   type CreateFeedbackFormValues,
 } from '@/types/form'
 import { createFeedbackAction } from '../actions'
-import routes from '@/lib/routes'
 import { toast } from 'react-hot-toast'
+import { useTransition } from 'react'
 
 type Props = {
   className?: string
@@ -32,6 +32,7 @@ const categories = categoryArr
   .reverse()
 
 export default function CreateFeedbackForm({ className }: Props) {
+  const [isPending, startTransition] = useTransition()
   const router = useRouter()
   const {
     register,
@@ -42,13 +43,11 @@ export default function CreateFeedbackForm({ className }: Props) {
     resolver: zodResolver(createFeedbackFormSchema),
   })
 
-  const onSubmit: SubmitHandler<CreateFeedbackFormValues> = async (data) => {
-    const feedback = await createFeedbackAction(data)
-
-    if (feedback) {
+  const onSubmit: SubmitHandler<CreateFeedbackFormValues> = (data) => {
+    startTransition(async () => {
+      await createFeedbackAction(data)
       toast.success('Feedback created successfully')
-      router.push(`${routes.feedback}/${feedback.id}`)
-    }
+    })
   }
 
   return (
@@ -99,13 +98,14 @@ export default function CreateFeedbackForm({ className }: Props) {
         />
       </FieldWrapper>
       <div className="mt-4 grid w-full gap-4 md:flex md:flex-row-reverse">
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" disabled={isPending}>
           Add Feedback
         </button>
         <button
           type="button"
           className="btn btn-darkBlue"
           onClick={() => router.back()}
+          disabled={isPending}
         >
           Cancel
         </button>
