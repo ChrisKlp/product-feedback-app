@@ -27,7 +27,6 @@ import {
 } from '@/types/form'
 import { deleteFeedbackAction, updateFeedbackAction } from '../actions'
 import { toast } from 'react-hot-toast'
-import routes from '@/lib/routes'
 
 type Props = {
   className?: string
@@ -57,18 +56,12 @@ export default function EditFeedbackForm({ className, initialValues }: Props) {
 
   const onSubmit: SubmitHandler<EditFeedbackFormValues> = async (data) => {
     await updateFeedbackAction(initialValues.id, data)
-
     toast.success('Feedback updated successfully')
   }
 
   const onDelete = async () => {
-    const feedback = await deleteFeedbackAction(initialValues.id)
-
-    if (feedback) {
-      toast.success('Feedback deleted successfully')
-      router.prefetch(routes.home)
-      router.push(routes.home)
-    }
+    await deleteFeedbackAction(initialValues.id)
+    toast.success('Feedback deleted successfully')
   }
 
   return (

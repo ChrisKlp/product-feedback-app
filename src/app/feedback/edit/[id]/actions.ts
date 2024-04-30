@@ -26,8 +26,8 @@ export async function updateFeedbackAction(
   })
 
   revalidateTag('feedbacks')
-  revalidatePath('/', 'layout')
-  revalidatePath(`${routes.feedback}/${feedbackId}`, 'layout')
+  revalidatePath(routes.home)
+  revalidatePath(`${routes.feedback}/${feedbackId}`)
   redirect(`${routes.feedback}/${feedbackId}`)
 }
 
@@ -35,7 +35,8 @@ export async function deleteFeedbackAction(feedbackId: string) {
   const feedback = await deleteFeedback(feedbackId)
 
   revalidateTag('feedbacks')
-  revalidatePath('/')
+  revalidatePath(routes.home)
+  redirect(routes.home)
 
   return feedback
 }

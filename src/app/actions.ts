@@ -3,6 +3,7 @@
 import { upvoteFeedback } from '@/data-access/feedbacks'
 import { createUser, getUser } from '@/data-access/users'
 import { createVote, getUserVote } from '@/data-access/votes'
+import routes from '@/lib/routes'
 import { currentUser, type User } from '@clerk/nextjs/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
 
@@ -46,7 +47,7 @@ export async function giveVoteAction(feedbackId: string) {
   await upvoteFeedback(feedbackId)
 
   revalidateTag('votes')
-  revalidatePath('/')
+  revalidatePath(routes.home)
 
   return vote
 }
