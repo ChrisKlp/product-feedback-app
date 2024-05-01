@@ -1,6 +1,5 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-import containerQueries from '@tailwindcss/container-queries'
 import tailwindcssAnimate from 'tailwindcss-animate'
 
 export const statusColors = {
@@ -60,6 +59,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [containerQueries, tailwindcssAnimate],
+  plugins: [tailwindcssAnimate],
 }
 export default config

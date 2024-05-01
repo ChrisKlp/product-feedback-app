@@ -5,7 +5,6 @@ import {
   feedbacks,
   type Category,
   type IFeedback,
-  type Status,
 } from '@/db/schema'
 import { SortOption } from '@/types'
 import { asc, count, desc, eq, sql } from 'drizzle-orm'
@@ -74,41 +73,6 @@ export const getFeedback = cache(
       .groupBy(feedbacks.id)
 
     return feedbackData[0]
-  },
-  ['feedbacks'],
-  { tags: ['feedbacks'] },
-)
-
-export const getFeedbackStatusData = cache(
-  async () => {
-    const feedbackStatusData = await db.transaction(async (tx) => {
-      const statusData = await tx
-        .select({
-          status: feedbacks.status,
-          count: count(feedbacks.id),
-        })
-        .from(feedbacks)
-        .groupBy(feedbacks.status)
-
-      const totalCount = await tx
-        .select({ totalCount: count(feedbacks.id) })
-        .from(feedbacks)
-
-      const stautsObject = statusData.reduce(
-        (acc, curr) => {
-          acc[curr.status] = curr.count
-          return acc
-        },
-        {} as Record<Status, number>,
-      )
-
-      return {
-        ...stautsObject,
-        total: totalCount[0]?.totalCount ?? 0,
-      }
-    })
-
-    return feedbackStatusData
   },
   ['feedbacks'],
   { tags: ['feedbacks'] },

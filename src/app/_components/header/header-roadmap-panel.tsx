@@ -16,7 +16,7 @@ export default function HeaderRoadmapPanel({ closeMenu, statusData }: Props) {
   return (
     <div className="pt-5; grid gap-2 rounded-dlg bg-white p-6">
       <div className="mb-4 flex items-center justify-between">
-        <p className="text-[18px] font-bold text-@blue-800">Roadmap</p>
+        <h2 className="text-[18px] font-bold text-@blue-800">Roadmap</h2>
         <Link
           onClick={closeMenu}
           href={routes.roadmap}

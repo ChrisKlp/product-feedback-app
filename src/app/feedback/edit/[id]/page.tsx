@@ -1,7 +1,7 @@
-import { getFeedback } from '@/data-access/feedbacks'
 import { notFound } from 'next/navigation'
-import EditFeedbackForm from './_components/edit-feedback-form'
 import { unstable_noStore as noStore } from 'next/cache'
+import { getFeedback } from '@/data-access/feedbacks'
+import EditFeedbackForm from './_components/edit-feedback-form'
 
 type Props = { params: { id: string } }
 export default async function NewFeedbackPage({ params: { id } }: Props) {

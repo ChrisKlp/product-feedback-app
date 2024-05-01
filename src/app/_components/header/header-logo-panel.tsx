@@ -33,7 +33,11 @@ export default function HeaderLogoPanel({ isMenuOpen, toggleMenu }: Props) {
         <source media="(min-width: 768px)" srcSet={tablet} />
         <source media="(min-width: 1024px)" srcSet={desktop} />
         <source srcSet={mobile} />
-        <img className="absolute h-full w-full object-cover" alt="background" />
+        <img
+          src={mobile}
+          className="absolute h-full w-full object-cover"
+          alt="background"
+        />
       </picture>
       <div className="relative flex h-full w-full items-center px-6 text-white md:grid md:items-end md:p-6">
         <SignedIn>
